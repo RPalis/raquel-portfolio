@@ -1,0 +1,48 @@
+{
+  "slug": "lafise-bank",
+  "title": "Lafise Bank — Poket Project",
+  "year": "2022",
+  "role": "Product Owner & Lead UX Designer",
+  "client": "Lafise Bank",
+  "tags": ["End-to-End Product Design", "Service design", "Product Owner"],
+  "cover": "/assets/images/lafise-cover.jpg",
+  "overview": "Poket is a B2C digital banking product for Lafise Bank — a neobank experience designed from scratch for the Latin American market, focusing on financial inclusion and ease of use.",
+  "sections": [
+    {
+      "type": "text",
+      "label": "Challenge",
+      "content": "Lafise needed a mobile-first banking product that could compete with emerging neobanks while serving users with varying levels of digital literacy across Central America."
+    },
+    {
+      "type": "image",
+      "src": "/assets/images/lafise-research.jpg",
+      "alt": "Service design workshop with Lafise stakeholders",
+      "caption": "Co-design workshops with stakeholders"
+    },
+    {
+      "type": "text",
+      "label": "Process",
+      "content": "As both Product Owner and Lead Designer, I defined the product vision, managed the backlog, and ran bi-weekly sprints. Conducted service design workshops across 3 countries to map the full customer journey from onboarding to first transaction."
+    },
+    {
+      "type": "image",
+      "src": "/assets/images/lafise-design.jpg",
+      "alt": "Poket app UI screens",
+      "caption": "Poket — final product UI"
+    },
+    {
+      "type": "text",
+      "label": "Outcome",
+      "content": "Launched to 50,000 users in the first quarter. The onboarding flow reduced KYC drop-off by 38% through a simplified identity verification UX tailored to local ID formats."
+    },
+    {
+      "type": "metrics",
+      "items": [
+        { "value": "50K", "label": "Users at launch" },
+        { "value": "-38%", "label": "KYC drop-off" },
+        { "value": "3 countries", "label": "Rolled out across" }
+      ]
+    }
+  ],
+  "next": "your-europe"
+}

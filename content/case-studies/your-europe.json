@@ -1,0 +1,48 @@
+{
+  "slug": "your-europe",
+  "title": "Your Europe — EU Council",
+  "year": "2021",
+  "role": "UX Researcher & Design System Lead",
+  "client": "European Council",
+  "tags": ["UX Research", "IA Redesign", "Accessibility", "Design System Foundations"],
+  "cover": "/assets/images/europe-cover.jpg",
+  "overview": "A comprehensive UX research engagement and information architecture redesign for the EU Council's Your Europe portal — a critical public service used by millions of EU citizens.",
+  "sections": [
+    {
+      "type": "text",
+      "label": "Challenge",
+      "content": "The Your Europe portal served 28 countries and 24 languages but had grown organically over years without a coherent IA or design system. Citizens struggled to find relevant information for their country and situation."
+    },
+    {
+      "type": "image",
+      "src": "/assets/images/europe-audit.jpg",
+      "alt": "Content audit and IA mapping",
+      "caption": "Content audit across 800+ pages"
+    },
+    {
+      "type": "text",
+      "label": "Research",
+      "content": "Led multilingual UX research with participants from 8 EU countries. Conducted tree testing, card sorting, and accessibility audits (WCAG 2.1 AA compliance). Facilitated workshops in English, Spanish, and French with EC stakeholders."
+    },
+    {
+      "type": "image",
+      "src": "/assets/images/europe-ia.jpg",
+      "alt": "Redesigned information architecture",
+      "caption": "New IA — simplified navigation model"
+    },
+    {
+      "type": "text",
+      "label": "Design System",
+      "content": "Established the foundational design system: component library, accessibility tokens, multilingual typography scale, and documentation for 12 contributing teams across EU institutions."
+    },
+    {
+      "type": "metrics",
+      "items": [
+        { "value": "WCAG 2.1", "label": "AA compliant" },
+        { "value": "24", "label": "Languages supported" },
+        { "value": "-52%", "label": "Task failure rate" }
+      ]
+    }
+  ],
+  "next": "hm-hospitales"
+}

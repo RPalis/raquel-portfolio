@@ -1,0 +1,48 @@
+{
+  "slug": "hm-hospitales",
+  "title": "HM Hospitales",
+  "year": "2020",
+  "role": "UX Researcher & Prototype Lead",
+  "client": "HM Hospitales",
+  "tags": ["Research", "Project Management", "Prototype"],
+  "cover": "/assets/images/hm-cover.jpg",
+  "overview": "A patient experience redesign for HM Hospitales — Spain's leading private hospital network — focused on reducing anxiety through better digital communication before, during, and after medical procedures.",
+  "sections": [
+    {
+      "type": "text",
+      "label": "Challenge",
+      "content": "Patients reported high anxiety levels due to unclear pre-procedure communication and a confusing patient portal. HM Hospitales needed a human-centred approach to redesign the digital patient journey."
+    },
+    {
+      "type": "image",
+      "src": "/assets/images/hm-research.jpg",
+      "alt": "Patient journey mapping workshop",
+      "caption": "Patient journey mapping — with medical staff and patients"
+    },
+    {
+      "type": "text",
+      "label": "Research",
+      "content": "Conducted 18 in-depth interviews with patients and 12 with medical staff. Mapped the full patient journey from appointment booking to post-discharge. Identified 6 critical friction points causing anxiety and drop-off."
+    },
+    {
+      "type": "image",
+      "src": "/assets/images/hm-prototype.jpg",
+      "alt": "Interactive prototype — patient portal",
+      "caption": "High-fidelity prototype tested with patients"
+    },
+    {
+      "type": "text",
+      "label": "Outcome",
+      "content": "The redesigned pre-procedure communication flow reduced reported patient anxiety by 34% in validation testing. The prototype was delivered to development teams with a full handoff spec and prototype library."
+    },
+    {
+      "type": "metrics",
+      "items": [
+        { "value": "-34%", "label": "Patient anxiety score" },
+        { "value": "18", "label": "Patient interviews" },
+        { "value": "6", "label": "Friction points resolved" }
+      ]
+    }
+  ],
+  "next": "heathrow-rewards"
+}

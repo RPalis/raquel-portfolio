@@ -1,0 +1,54 @@
+{
+  "slug": "heathrow-rewards",
+  "title": "Heathrow Rewards",
+  "year": "2023",
+  "role": "Lead UX/UI Designer",
+  "client": "Heathrow Airport",
+  "tags": ["End-to-end product design", "Native Mobile (iOS & Android)", "AI UX Vision"],
+  "cover": "/assets/images/heathrow-cover.jpg",
+  "overview": "A full redesign of the Heathrow Rewards loyalty programme — transforming a fragmented airport shopping experience into a seamless, AI-enhanced mobile journey for millions of passengers.",
+  "sections": [
+    {
+      "type": "text",
+      "label": "Challenge",
+      "content": "Heathrow's loyalty app was underperforming with low engagement and high churn. Users found it difficult to understand their points, discover offers, and redeem rewards — especially under the time pressure of airport travel."
+    },
+    {
+      "type": "image",
+      "src": "/assets/images/heathrow-research.jpg",
+      "alt": "User research sessions at Heathrow Terminal 5",
+      "caption": "User research sessions — Terminal 5"
+    },
+    {
+      "type": "text",
+      "label": "Research",
+      "content": "I led end-to-end UX research including contextual inquiry at the airport, diary studies, and 24 moderated usability tests across iOS and Android. Key insight: 78% of users checked their balance only once per visit — the app lacked a meaningful reason to return."
+    },
+    {
+      "type": "image",
+      "src": "/assets/images/heathrow-wireframes.jpg",
+      "alt": "Low and high fidelity wireframes",
+      "caption": "From low-fi flows to high-fidelity prototypes"
+    },
+    {
+      "type": "text",
+      "label": "Design",
+      "content": "Redesigned the core information architecture to surface rewards and offers contextually based on flight time and location. Introduced an AI-powered recommendation layer that personalises offers based on travel history and preferences."
+    },
+    {
+      "type": "image",
+      "src": "/assets/images/heathrow-final.jpg",
+      "alt": "Final UI screens — Heathrow Rewards app",
+      "caption": "Final UI — iOS & Android"
+    },
+    {
+      "type": "metrics",
+      "items": [
+        { "value": "+42%", "label": "Engagement rate" },
+        { "value": "-31%", "label": "Drop-off at redemption" },
+        { "value": "4.6★", "label": "App Store rating" }
+      ]
+    }
+  ],
+  "next": "lafise-bank"
+}
