@@ -1,54 +1,74 @@
 {
   "slug": "heathrow-rewards",
   "title": "Heathrow Rewards",
-  "year": "2023",
-  "role": "Lead UX/UI Designer",
+  "year": "2024–2026",
+  "role": "Senior Product UX/UI Designer",
   "client": "Heathrow Airport",
-  "tags": ["End-to-end product design", "Native Mobile (iOS & Android)", "AI UX Vision"],
-  "cover": "/assets/images/heathrow-cover.jpg",
-  "overview": "A full redesign of the Heathrow Rewards loyalty programme — transforming a fragmented airport shopping experience into a seamless, AI-enhanced mobile journey for millions of passengers.",
+  "tags": ["End-to-end Product Design", "Native Mobile (iOS & Android)", "User Research", "AI UX Vision"],
+  "cover": "/assets/images/heathrow/heathrow-app-features.png",
+  "overview": "Heathrow Airport serves tens of millions of passengers annually and operates one of the most complex passenger ecosystems in the world. I led the redesign of the mobile app — transforming a legacy, fragmented experience into a coherent, contextual product used by 1.6 million passengers. The result: +50% unique users, +252% flights added, Gold at the Magellan Awards 2025.",
   "sections": [
     {
       "type": "text",
       "label": "Challenge",
-      "content": "Heathrow's loyalty app was underperforming with low engagement and high churn. Users found it difficult to understand their points, discover offers, and redeem rewards — especially under the time pressure of airport travel."
+      "content": "The existing Heathrow app was a legacy system with fragmented user journeys, limited contextual relevance, low loyalty programme engagement, and inconsistent UX patterns across features. The business needed a redesigned product that could increase passenger engagement and revenue — without compromising enterprise-grade accessibility, performance, or scalability. How might we design a mobile experience that reduces cognitive load in high-stress, time-sensitive environments, and scales across diverse passenger profiles and travel intents?"
     },
     {
       "type": "image",
-      "src": "/assets/images/heathrow-research.jpg",
-      "alt": "User research sessions at Heathrow Terminal 5",
-      "caption": "User research sessions — Terminal 5"
+      "src": "/assets/images/heathrow/heathrow-redesign-comparison.png",
+      "alt": "Heathrow Rewards — Before and after redesign. Left: legacy app. Right: redesigned live version.",
+      "caption": "Before → After · Heathrow Rewards redesign — from the legacy app to the live version shipped in 2024"
     },
     {
       "type": "text",
-      "label": "Research",
-      "content": "I led end-to-end UX research including contextual inquiry at the airport, diary studies, and 24 moderated usability tests across iOS and Android. Key insight: 78% of users checked their balance only once per visit — the app lacked a meaningful reason to return."
+      "label": "Research & Discovery",
+      "content": "I mapped end-to-end passenger journeys across arrival, departure, transit, and dwell time — identifying friction clusters around loyalty visibility, flight status, and wayfinding. Analytics and funnel data revealed where users dropped off and which features were underused. Competitive benchmarking across leading loyalty and travel apps globally surfaced opportunities for progressive disclosure, contextual UX, and system thinking at scale."
     },
     {
       "type": "image",
-      "src": "/assets/images/heathrow-wireframes.jpg",
-      "alt": "Low and high fidelity wireframes",
-      "caption": "From low-fi flows to high-fidelity prototypes"
+      "src": "/assets/images/heathrow/heathrow-architecture-ia.png",
+      "alt": "Heathrow Rewards — Information Architecture diagram showing the full Rewards navigation tree, Live Version",
+      "caption": "Rewards Architecture — Live Version · IA restructure mapping all user pathways across the loyalty programme"
     },
     {
       "type": "text",
-      "label": "Design",
-      "content": "Redesigned the core information architecture to surface rewards and offers contextually based on flight time and location. Introduced an AI-powered recommendation layer that personalises offers based on travel history and preferences."
+      "label": "Design Process",
+      "content": "I followed a product-led UX process combining discovery, delivery, and optimisation — leading design end-to-end from problem framing to developer handover, across multiple squads. Key phases: (1) IA restructure based on passenger mental models, (2) Lo-fi to mid-fi flows tested with real users across 2 rounds, (3) Modular, accessible design system built for multi-squad consistency, (4) High-fidelity prototype for stakeholder sign-off and full dev handoff aligned to Heathrow brand standards."
     },
     {
       "type": "image",
-      "src": "/assets/images/heathrow-final.jpg",
-      "alt": "Final UI screens — Heathrow Rewards app",
-      "caption": "Final UI — iOS & Android"
+      "src": "/assets/images/heathrow/heathrow-hero-screens.jpg",
+      "alt": "Encora x Heathrow — 4 key redesigned app screens: home dashboard, flight itinerary, rewards card, and profile",
+      "caption": "Delivering one of the world's greatest airport experiences to 1.6M app users — Encora × Heathrow"
+    },
+    {
+      "type": "text",
+      "label": "Solution",
+      "content": "A contextual, moment-led app experience meeting passengers exactly where they are — planning ahead, navigating the terminal, or discovering rewards. Core features redesigned: home dashboard with contextual offers, live flight tracker, digital loyalty card, personalised notifications, and in-terminal wayfinding. I also defined the AI UX vision for hyper-personalised interfaces — driving design system consistency across multiple product squads and partnering with Product, Engineering, Data, and AI teams throughout."
     },
     {
       "type": "metrics",
       "items": [
-        { "value": "+42%", "label": "Engagement rate" },
-        { "value": "-31%", "label": "Drop-off at redemption" },
-        { "value": "4.6★", "label": "App Store rating" }
+        { "value": "+50%", "label": "Increase in unique users" },
+        { "value": "+252%", "label": "Flights added to the app" },
+        { "value": "+15%", "label": "Reserve & Collect revenue uplift" },
+        { "value": "43K+", "label": "Monthly downloads (2024)" },
+        { "value": "1.6M", "label": "App users reached" },
+        { "value": "🏆 Gold", "label": "Magellan Awards 2025" }
       ]
+    },
+    {
+      "type": "image",
+      "src": "/assets/images/heathrow/heathrow-award-magellan.jpg",
+      "alt": "Travel Weekly Magellan Awards 2025 — Winner",
+      "caption": "Travel Weekly Magellan Awards 2025 — Gold · Airport Overall Mobile App"
+    },
+    {
+      "type": "text",
+      "label": "Reflection",
+      "content": "Working at Heathrow scale meant designing for one of the most demanding, diverse user bases in the world — millions of passengers from different cultures, under real time pressure. The most valuable lesson: contextual relevance beats feature richness. A notification at the right moment is worth ten screens of information. I'm proud that the work shipped, scaled, and won — but what stays with me most is seeing real passengers use it better."
     }
   ],
-  "next": "lafise-bank"
+  "next": "lafise-bank",
+  "nextTitle": "Lafise Bank — Poket Project"
 }
