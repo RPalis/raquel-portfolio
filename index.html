@@ -242,7 +242,7 @@
 
     /* --- FEATURED WORKS --- */
     #works {
-      padding: 80px 48px;
+      padding: 80px 48px 0;
     }
 
     .works-header {
@@ -258,80 +258,96 @@
       margin-top: 16px;
     }
 
-    .project-row {
-      border-top: 1px solid var(--divider);
+    /* --- PROJECTS GRID --- */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
     }
 
-    .project-image {
-      width: 100%;
-      height: 480px;
-      background: #1A1A1A;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+    .project-card {
       position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: #111;
+      display: block;
+      text-decoration: none;
+      color: inherit;
     }
 
-    .project-image-label {
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      color: rgba(255,255,255,0.15);
-      text-transform: uppercase;
+    .project-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 700ms ease;
     }
 
-    .project-meta {
+    .project-card:hover img {
+      transform: scale(1.04);
+    }
+
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.88) 0%,
+        rgba(0,0,0,0.35) 45%,
+        transparent 100%
+      );
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: 24px 0 32px;
-      gap: 24px;
-    }
-
-    .project-meta-left {
-      flex: 1;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 32px;
+      gap: 14px;
     }
 
     .project-name {
-      font-size: 20px;
-      font-weight: 700;
+      font-size: clamp(16px, 2vw, 22px);
+      font-weight: 900;
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      margin-bottom: 14px;
+      line-height: 1.1;
+    }
+
+    .project-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
     }
 
     .project-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
     }
 
     .project-tag {
       font-size: 11px;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-    }
-
-    .project-tag::before {
-      content: "• ";
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.75);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 100px;
+      padding: 4px 10px;
     }
 
     .project-access {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 400;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       color: var(--muted);
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      transition: transform 200ms ease, opacity 200ms ease, color 200ms ease;
+      transition: transform 200ms ease, color 200ms ease;
       white-space: nowrap;
-      padding-top: 4px;
+      flex-shrink: 0;
     }
 
-    .project-access:hover {
-      transform: translateX(6px);
-      opacity: 1;
+    .project-card:hover .project-access {
+      transform: translateX(4px);
       color: var(--text);
     }
 
@@ -501,8 +517,12 @@
         padding: 64px 32px;
       }
 
-      .project-image {
-        height: 320px;
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card {
+        aspect-ratio: 16 / 10;
       }
 
       #services {
@@ -553,13 +573,12 @@
         padding: 56px 24px;
       }
 
-      .project-image {
-        height: 240px;
+      .project-card {
+        aspect-ratio: 4 / 3;
       }
 
-      .project-meta {
-        flex-direction: column;
-        gap: 16px;
+      .project-overlay {
+        padding: 20px;
       }
 
       .service-cols {
@@ -655,77 +674,72 @@
       <h2 class="works-heading">Featured Works</h2>
     </div>
 
-    <!-- Project 1 -->
-    <div class="project-row reveal">
-      <div class="project-image">
-        <span class="project-image-label">Project Image</span>
-      </div>
-      <div class="project-meta">
-        <div class="project-meta-left">
+    <div class="projects-grid">
+
+      <!-- Project 1 — Heathrow -->
+      <a href="/case-study/heathrow-rewards" class="project-card reveal">
+        <img src="/assets/images/covers/heathrow-cover.png" alt="Heathrow Rewards app — key screens" loading="eager" />
+        <div class="project-overlay">
           <p class="project-name">Heathrow Rewards</p>
-          <div class="project-tags">
-            <span class="project-tag">End-to-end product design</span>
-            <span class="project-tag">Native Mobile (iOS &amp; Android)</span>
-            <span class="project-tag">AI UX Vision</span>
+          <div class="project-bottom">
+            <div class="project-tags">
+              <span class="project-tag">End-to-end Product Design</span>
+              <span class="project-tag">Native Mobile</span>
+              <span class="project-tag">AI UX Vision</span>
+            </div>
+            <span class="project-access">Access →</span>
           </div>
         </div>
-        <a href="/case-study/heathrow-rewards" class="project-access">Access →</a>
-      </div>
-    </div>
+      </a>
 
-    <!-- Project 2 -->
-    <div class="project-row reveal">
-      <div class="project-image">
-        <span class="project-image-label">Project Image</span>
-      </div>
-      <div class="project-meta">
-        <div class="project-meta-left">
+      <!-- Project 2 — Lafise -->
+      <a href="/case-study/lafise-bank" class="project-card reveal">
+        <img src="/assets/images/covers/lafise-cover.png" alt="Lafise Bank Poket — app screens" loading="lazy" />
+        <div class="project-overlay">
           <p class="project-name">Lafise Bank — Poket Project</p>
-          <div class="project-tags">
-            <span class="project-tag">End-to-End Product Design</span>
-            <span class="project-tag">Service design</span>
-            <span class="project-tag">Product Owner</span>
+          <div class="project-bottom">
+            <div class="project-tags">
+              <span class="project-tag">End-to-End Product Design</span>
+              <span class="project-tag">Service Design</span>
+              <span class="project-tag">Product Owner</span>
+            </div>
+            <span class="project-access">Access →</span>
           </div>
         </div>
-        <a href="/case-study/lafise-bank" class="project-access">Access →</a>
-      </div>
-    </div>
+      </a>
 
-    <!-- Project 3 -->
-    <div class="project-row reveal">
-      <div class="project-image">
-        <span class="project-image-label">Project Image</span>
-      </div>
-      <div class="project-meta">
-        <div class="project-meta-left">
+      <!-- Project 3 — Your Europe -->
+      <a href="/case-study/your-europe" class="project-card reveal">
+        <img src="/assets/images/covers/europe-cover.png" alt="Your Europe — EU Council portal" loading="lazy" />
+        <div class="project-overlay">
           <p class="project-name">Your Europe — EU Council</p>
-          <div class="project-tags">
-            <span class="project-tag">UX Research</span>
-            <span class="project-tag">IA Redesign</span>
-            <span class="project-tag">Accessibility</span>
-            <span class="project-tag">Design System Foundations</span>
+          <div class="project-bottom">
+            <div class="project-tags">
+              <span class="project-tag">UX Research</span>
+              <span class="project-tag">IA Redesign</span>
+              <span class="project-tag">Accessibility</span>
+            </div>
+            <span class="project-access">Access →</span>
           </div>
         </div>
-        <a href="/case-study/your-europe" class="project-access">Access →</a>
-      </div>
-    </div>
+      </a>
 
-    <!-- Project 4 -->
-    <div class="project-row reveal">
-      <div class="project-image">
-        <span class="project-image-label">Project Image</span>
-      </div>
-      <div class="project-meta">
-        <div class="project-meta-left">
+      <!-- Project 4 — HM Hospitales -->
+      <a href="/case-study/hm-hospitales" class="project-card reveal">
+        <img src="/assets/images/covers/hm-cover.png" alt="HM Hospitales — website design" loading="lazy" />
+        <div class="project-overlay">
           <p class="project-name">HM Hospitales</p>
-          <div class="project-tags">
-            <span class="project-tag">Research</span>
-            <span class="project-tag">Project Management</span>
-            <span class="project-tag">Prototype</span>
+          <div class="project-bottom">
+            <div class="project-tags">
+              <span class="project-tag">Research</span>
+              <span class="project-tag">Project Management</span>
+              <span class="project-tag">Prototype</span>
+            </div>
+            <span class="project-access">Access →</span>
           </div>
         </div>
-        <a href="/case-study/hm-hospitales" class="project-access">Access →</a>
-      </div>
+      </a>
+
     </div>
 
   </section>
