@@ -233,19 +233,15 @@
 
     /* --- WORKS GRID --- */
     .works-grid {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 700px 700px;
       gap: 16px;
-    }
-
-    .works-row {
-      display: flex;
-      gap: 16px;
-      height: 700px;
+      justify-content: center;
     }
 
     .project-card {
-      flex: 1;
+      width: 700px;
+      height: 700px;
       position: relative;
       border-radius: 8px;
       overflow: hidden;
@@ -472,8 +468,8 @@
       #works { padding: 64px 32px 0; }
       .works-heading { font-size: clamp(48px, 8vw, 72px); }
 
-      .works-row { flex-direction: column; height: auto; }
-      .project-card { height: 420px; flex: none; }
+      .works-grid { grid-template-columns: 1fr; }
+      .project-card { width: 100%; height: 420px; }
 
       #services { padding: 64px 32px; }
       .services-heading { font-size: clamp(48px, 8vw, 72px); }
@@ -499,6 +495,7 @@
 
       #about { padding: 56px 24px; }
       #works { padding: 56px 24px 0; }
+      .project-card { height: 360px; }
       #services { padding: 56px 24px; }
 
       .service-row:hover {
@@ -565,63 +562,53 @@
 
     <div class="works-grid">
 
-      <!-- Row 1 -->
-      <div class="works-row">
-
-        <a href="/case-study/heathrow-rewards" class="project-card card-heathrow reveal">
-          <img src="/assets/images/covers/heathrow-cover.png" alt="Heathrow Rewards" loading="eager" />
-          <div class="card-gradient"></div>
-          <div class="tile-bar">
-            <div class="tile-info">
-              <span class="tile-name">Heathrow Rewards</span>
-              <span class="tile-sub">Product Design · iOS &amp; Android</span>
-            </div>
-            <span class="tile-view">View →</span>
+      <a href="/case-study/heathrow-rewards" class="project-card card-heathrow reveal">
+        <img src="/assets/images/covers/heathrow-cover.png" alt="Heathrow Rewards" loading="eager" />
+        <div class="card-gradient"></div>
+        <div class="tile-bar">
+          <div class="tile-info">
+            <span class="tile-name">Heathrow Rewards</span>
+            <span class="tile-sub">Product Design · iOS &amp; Android</span>
           </div>
-        </a>
+          <span class="tile-view">View →</span>
+        </div>
+      </a>
 
-        <a href="/case-study/lafise-bank" class="project-card card-lafise reveal">
-          <img src="/assets/images/covers/lafise-cover.png" alt="Lafise Bank — Poket" loading="lazy" />
-          <div class="card-gradient"></div>
-          <div class="tile-bar">
-            <div class="tile-info">
-              <span class="tile-name">Lafise Bank — Poket</span>
-              <span class="tile-sub">Fintech · Mobile App</span>
-            </div>
-            <span class="tile-view">View →</span>
+      <a href="/case-study/lafise-bank" class="project-card card-lafise reveal">
+        <img src="/assets/images/covers/lafise-cover.png" alt="Lafise Bank — Poket" loading="lazy" />
+        <div class="card-gradient"></div>
+        <div class="tile-bar">
+          <div class="tile-info">
+            <span class="tile-name">Lafise Bank — Poket</span>
+            <span class="tile-sub">Fintech · Mobile App</span>
           </div>
-        </a>
+          <span class="tile-view">View →</span>
+        </div>
+      </a>
 
-      </div>
-
-      <!-- Row 2 -->
-      <div class="works-row">
-
-        <a href="/case-study/your-europe" class="project-card card-europe reveal">
-          <img src="/assets/images/covers/europe-cover.png" alt="Your Europe — EU Council" loading="lazy" />
-          <div class="card-gradient"></div>
-          <div class="tile-bar">
-            <div class="tile-info">
-              <span class="tile-name">Your Europe — EU</span>
-              <span class="tile-sub">Gov · Web Platform</span>
-            </div>
-            <span class="tile-view">View →</span>
+      <a href="/case-study/your-europe" class="project-card card-europe reveal">
+        <img src="/assets/images/covers/europe-cover.png" alt="Your Europe — EU Council" loading="lazy" />
+        <div class="card-gradient"></div>
+        <div class="tile-bar">
+          <div class="tile-info">
+            <span class="tile-name">Your Europe — EU</span>
+            <span class="tile-sub">Gov · Web Platform</span>
           </div>
-        </a>
+          <span class="tile-view">View →</span>
+        </div>
+      </a>
 
-        <a href="/case-study/hm-hospitales" class="project-card card-hm reveal">
-          <img src="/assets/images/covers/hm-cover.png" alt="HM Hospitales" loading="lazy" />
-          <div class="card-gradient"></div>
-          <div class="tile-bar">
-            <div class="tile-info">
-              <span class="tile-name">HM Hospitales</span>
-              <span class="tile-sub">Healthcare · Design System</span>
-            </div>
-            <span class="tile-view">View →</span>
+      <a href="/case-study/hm-hospitales" class="project-card card-hm reveal">
+        <img src="/assets/images/covers/hm-cover.png" alt="HM Hospitales" loading="lazy" />
+        <div class="card-gradient"></div>
+        <div class="tile-bar">
+          <div class="tile-info">
+            <span class="tile-name">HM Hospitales</span>
+            <span class="tile-sub">Healthcare · Design System</span>
           </div>
-        </a>
-
-      </div>
+          <span class="tile-view">View →</span>
+        </div>
+      </a>
 
     </div>
   </section>
