@@ -264,7 +264,7 @@
     .card-europe    { background: #140f0a; }
     .card-hm        { background: #120d1a; }
 
-    /* image wrapper — uses background-size:cover for bulletproof corner fill */
+    /* image wrapper — always 10% larger than card so all corners are covered */
     .card-img-wrap {
       position: absolute;
       inset: 0;
@@ -272,14 +272,14 @@
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
-      transform: scale(1);
+      transform: scale(1.1);
       transition: transform 700ms ease;
       will-change: transform;
     }
 
     .card-img-wrap img { display: none; }
 
-    .project-card:hover .card-img-wrap { transform: scale(1.04); }
+    .project-card:hover .card-img-wrap { transform: scale(1.15); }
 
     .card-gradient {
       position: absolute;
