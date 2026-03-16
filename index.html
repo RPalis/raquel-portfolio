@@ -10,23 +10,16 @@
 
   <style>
     /* --- RESET & BASE --- */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0A0A0A;
-      --text: #FFFFFF;
-      --muted: rgba(255,255,255,0.45);
+      --bg:      #0A0A0A;
+      --text:    #FFFFFF;
+      --muted:   rgba(255,255,255,0.45);
       --divider: rgba(255,255,255,0.12);
-      --hover-row: rgba(255,255,255,0.03);
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       background: var(--bg);
@@ -37,64 +30,29 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
     /* --- SCROLL REVEAL --- */
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(24px);
       transition: opacity 700ms ease, transform 700ms ease;
     }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* --- SECTION DIVIDER --- */
-    .section-divider {
-      width: 100%;
-      height: 1px;
-      background: var(--divider);
-    }
-
-    /* --- SECTION LABEL --- */
-    .section-label {
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    .section-label::before {
-      content: "• ";
-    }
+    /* --- DIVIDER --- */
+    .divider { width: 100%; height: 1px; background: var(--divider); }
 
     /* --- NAV --- */
     nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 100;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 28px 48px;
-      mix-blend-mode: normal;
-    }
-
-    nav::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(10,10,10,0.85) 0%, transparent 100%);
-      pointer-events: none;
-      z-index: -1;
+      background: rgba(10,10,10,0.9);
     }
 
     .nav-logo {
@@ -119,114 +77,116 @@
       transition: color 200ms ease;
     }
 
-    .nav-links a:hover {
-      color: var(--text);
-    }
+    .nav-links a:hover { color: var(--text); }
 
     /* --- HERO --- */
     #hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 120px 48px 56px;
       position: relative;
+      height: 900px;
+      background: #12121a;
+      overflow: hidden;
     }
 
-    .hero-main {
-      flex: 1;
-      display: flex;
-      align-items: center;
+    .hero-bg-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.35;
+    }
+
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,10,10,0.95) 0%,
+        rgba(10,10,10,0.45) 55%,
+        rgba(10,10,10,0) 100%
+      );
     }
 
     .hero-heading {
-      font-size: clamp(72px, 10vw, 140px);
+      position: absolute;
+      left: 48px;
+      top: calc(50% + 160px);
+      transform: translateY(-50%);
+      font-size: 128px;
       font-weight: 900;
-      line-height: 0.9;
+      line-height: 0.88;
       text-transform: uppercase;
       letter-spacing: -0.02em;
+      color: var(--text);
     }
 
-    .hero-heading span {
-      display: block;
-      opacity: 0;
-      transform: translateY(30px);
-    }
-
+    .hero-heading span { display: block; opacity: 0; transform: translateY(24px); }
     .hero-heading span.loaded {
-      opacity: 1;
-      transform: translateY(0);
+      opacity: 1; transform: translateY(0);
       transition: opacity 700ms ease, transform 700ms ease;
     }
-
     .hero-heading span:nth-child(1) { transition-delay: 0ms; }
     .hero-heading span:nth-child(2) { transition-delay: 120ms; }
-    .hero-heading span:nth-child(3) { transition-delay: 240ms; }
 
     .hero-bottom {
+      position: absolute;
+      bottom: 58px;
+      left: 48px;
+      right: 48px;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      gap: 24px;
-    }
-
-    .hero-bottom-left {
       font-size: 13px;
-      font-weight: 400;
       color: var(--muted);
       letter-spacing: 0.04em;
       line-height: 1.6;
     }
 
-    .hero-bottom-right {
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--muted);
-      text-align: right;
-      letter-spacing: 0.04em;
-      line-height: 1.6;
-      max-width: 340px;
-    }
+    .hero-bottom-right { text-align: right; }
 
     /* --- ABOUT --- */
     #about {
       padding: 80px 48px;
-    }
-
-    .about-inner {
       display: flex;
       gap: 80px;
       align-items: flex-start;
+      overflow: hidden;
     }
 
-    .about-label-col {
+    .about-label {
       flex-shrink: 0;
       padding-top: 6px;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-transform: uppercase;
     }
+
+    .about-label::before { content: "• "; }
 
     .about-text-col {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
+      gap: 48px;
     }
 
     .about-text {
-      font-size: clamp(22px, 2.8vw, 36px);
+      font-size: 34px;
       font-weight: 400;
       line-height: 1.45;
       text-align: right;
       color: var(--text);
-      max-width: 680px;
     }
 
     .about-btn {
-      margin-top: 48px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       padding: 14px 32px;
-      border: 1px solid var(--divider);
+      border: 1px solid rgba(255,255,255,0.2);
       border-radius: 100px;
       font-size: 14px;
       font-weight: 400;
@@ -236,8 +196,8 @@
     }
 
     .about-btn:hover {
-      background: var(--hover-row);
-      border-color: rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.35);
     }
 
     /* --- FEATURED WORKS --- */
@@ -246,109 +206,119 @@
     }
 
     .works-header {
-      margin-bottom: 56px;
-    }
-
-    .works-heading {
-      font-size: clamp(48px, 6vw, 88px);
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: -0.02em;
-      line-height: 0.95;
-      margin-top: 16px;
-    }
-
-    /* --- PROJECTS GRID --- */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-    }
-
-    .project-card {
-      position: relative;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-      background: #111;
-      display: block;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .project-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 700ms ease;
-    }
-
-    .project-card:hover img {
-      transform: scale(1.04);
-    }
-
-    .project-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(0,0,0,0.88) 0%,
-        rgba(0,0,0,0.35) 45%,
-        transparent 100%
-      );
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 32px;
-      gap: 14px;
-    }
-
-    .project-name {
-      font-size: clamp(16px, 2vw, 22px);
-      font-weight: 900;
+      gap: 12px;
+      padding-bottom: 32px;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
-      line-height: 1.1;
     }
 
-    .project-bottom {
+    .section-label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    .section-label::before { content: "• "; }
+
+    .works-heading {
+      font-size: 88px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    /* --- WORKS GRID --- */
+    .works-grid {
       display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
+      flex-direction: column;
       gap: 16px;
     }
 
-    .project-tags {
+    .works-row {
       display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
+      gap: 16px;
+      height: 700px;
     }
 
-    .project-tag {
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.75);
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 100px;
-      padding: 4px 10px;
+    .project-card {
+      flex: 1;
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      display: block;
+      text-decoration: none;
     }
 
-    .project-access {
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      display: inline-flex;
+    /* unique bg tints per card */
+    .card-heathrow  { background: #12121f; }
+    .card-lafise    { background: #0a1712; }
+    .card-europe    { background: #140f0a; }
+    .card-hm        { background: #120d1a; }
+
+    .project-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 700ms ease;
+    }
+
+    .project-card:hover img { transform: scale(1.04); }
+
+    .card-gradient {
+      position: absolute;
+      left: 0; right: 0;
+      bottom: 0;
+      height: 260px;
+      background: linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0) 100%);
+    }
+
+    .tile-bar {
+      position: absolute;
+      left: 0; right: 0;
+      bottom: 0;
+      height: 76px;
+      display: flex;
       align-items: center;
-      gap: 4px;
-      transition: transform 200ms ease, color 200ms ease;
-      white-space: nowrap;
-      flex-shrink: 0;
+      justify-content: space-between;
+      padding: 0 28px;
     }
 
-    .project-card:hover .project-access {
-      transform: translateX(4px);
+    .tile-info { display: flex; flex-direction: column; gap: 4px; }
+
+    .tile-name {
+      font-size: 22px;
+      font-weight: 900;
       color: var(--text);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .tile-sub {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .tile-view {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      transition: color 200ms ease, transform 200ms ease;
+      white-space: nowrap;
+    }
+
+    .project-card:hover .tile-view {
+      color: var(--text);
+      transform: translateX(4px);
     }
 
     /* --- WHAT I DO --- */
@@ -357,51 +327,50 @@
     }
 
     .services-header {
-      margin-bottom: 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-transform: uppercase;
     }
 
     .services-heading {
-      font-size: clamp(48px, 6vw, 88px);
+      font-size: 88px;
       font-weight: 900;
-      text-transform: uppercase;
       letter-spacing: -0.02em;
       line-height: 0.95;
-      margin-top: 16px;
+      color: var(--text);
     }
 
     .service-row {
-      border-top: 1px solid var(--divider);
       display: flex;
-      align-items: flex-start;
       gap: 48px;
+      align-items: flex-start;
       padding: 40px 0;
+      font-size: 14px;
+      border-top: 1px solid var(--divider);
       transition: background 200ms ease;
       cursor: default;
     }
 
     .service-row:hover {
-      background: var(--hover-row);
-      padding-left: 16px;
-      padding-right: 16px;
-      margin-left: -16px;
-      margin-right: -16px;
+      background: rgba(255,255,255,0.02);
+      padding-left: 12px;
+      padding-right: 12px;
+      margin-left: -12px;
+      margin-right: -12px;
     }
 
     .service-title {
       flex: 0 0 280px;
       font-size: 14px;
-      font-weight: 900;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
+      color: var(--text);
       line-height: 1.4;
-      padding-top: 2px;
     }
 
-    .service-cols {
-      flex: 1;
-      display: flex;
-      gap: 40px;
-    }
+    .service-cols { flex: 1; display: flex; gap: 40px; }
 
     .service-col {
       flex: 1;
@@ -421,24 +390,29 @@
     #contact {
       padding: 120px 48px;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
     }
 
     .contact-heading {
-      font-size: clamp(40px, 5.5vw, 80px);
+      font-size: 88px;
       font-weight: 900;
       text-transform: uppercase;
       letter-spacing: -0.02em;
       line-height: 0.95;
-      margin-bottom: 24px;
+      color: var(--text);
     }
 
     .contact-subtitle {
       font-size: 16px;
       color: var(--muted);
-      margin-bottom: 56px;
       font-weight: 400;
       line-height: 1.6;
     }
+
+    .contact-spacer { height: 32px; }
 
     .contact-links {
       display: flex;
@@ -478,145 +452,67 @@
 
     /* --- RESPONSIVE: TABLET 768px --- */
     @media (max-width: 768px) {
-      nav {
-        padding: 24px 32px;
+      nav { padding: 24px 32px; }
+
+      #hero { height: 640px; }
+
+      .hero-heading {
+        font-size: clamp(56px, 10vw, 96px);
+        left: 32px;
+        top: calc(50% + 80px);
       }
 
-      #hero {
-        padding: 100px 32px 48px;
-      }
+      .hero-bottom { left: 32px; right: 32px; flex-direction: column; gap: 12px; }
+      .hero-bottom-right { text-align: left; }
 
-      .hero-bottom {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-      }
+      #about { padding: 64px 32px; flex-direction: column; gap: 32px; }
+      .about-text-col { align-items: flex-start; }
+      .about-text { text-align: left; font-size: clamp(20px, 3vw, 28px); }
 
-      .hero-bottom-right {
-        text-align: left;
-      }
+      #works { padding: 64px 32px 0; }
+      .works-heading { font-size: clamp(48px, 8vw, 72px); }
 
-      #about {
-        padding: 64px 32px;
-      }
+      .works-row { flex-direction: column; height: auto; }
+      .project-card { height: 420px; flex: none; }
 
-      .about-inner {
-        flex-direction: column;
-        gap: 32px;
-      }
+      #services { padding: 64px 32px; }
+      .services-heading { font-size: clamp(48px, 8vw, 72px); }
+      .service-row { flex-direction: column; gap: 24px; }
+      .service-title { flex: none; }
+      .service-cols { flex-direction: column; gap: 8px; }
 
-      .about-text-col {
-        align-items: flex-start;
-      }
+      #contact { padding: 80px 32px; }
+      .contact-heading { font-size: clamp(40px, 7vw, 64px); }
 
-      .about-text {
-        text-align: left;
-      }
-
-      #works {
-        padding: 64px 32px;
-      }
-
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .project-card {
-        aspect-ratio: 16 / 10;
-      }
-
-      #services {
-        padding: 64px 32px;
-      }
-
-      .service-row {
-        flex-direction: column;
-        gap: 24px;
-      }
-
-      .service-title {
-        flex: none;
-      }
-
-      #contact {
-        padding: 80px 32px;
-      }
-
-      footer {
-        padding: 24px 32px;
-      }
+      footer { padding: 24px 32px; }
     }
 
     /* --- RESPONSIVE: MOBILE 480px --- */
     @media (max-width: 480px) {
-      nav {
-        padding: 20px 24px;
-      }
+      nav { padding: 20px 24px; }
+      .nav-links { gap: 20px; }
+      .nav-links a { font-size: 11px; }
 
-      .nav-links {
-        gap: 20px;
-      }
+      #hero { height: 520px; }
+      .hero-heading { font-size: clamp(44px, 12vw, 72px); left: 24px; }
+      .hero-bottom { left: 24px; right: 24px; }
 
-      .nav-links a {
-        font-size: 11px;
-      }
-
-      #hero {
-        padding: 90px 24px 40px;
-      }
-
-      #about {
-        padding: 56px 24px;
-      }
-
-      #works {
-        padding: 56px 24px;
-      }
-
-      .project-card {
-        aspect-ratio: 4 / 3;
-      }
-
-      .project-overlay {
-        padding: 20px;
-      }
-
-      .service-cols {
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      #services {
-        padding: 56px 24px;
-      }
+      #about { padding: 56px 24px; }
+      #works { padding: 56px 24px 0; }
+      #services { padding: 56px 24px; }
 
       .service-row:hover {
-        padding-left: 0;
-        padding-right: 0;
-        margin-left: 0;
-        margin-right: 0;
+        padding-left: 0; padding-right: 0;
+        margin-left: 0; margin-right: 0;
       }
 
-      #contact {
-        padding: 64px 24px;
-      }
+      #contact { padding: 64px 24px; }
+      .contact-links { flex-direction: column; align-items: center; gap: 24px; }
 
-      .contact-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 24px;
-      }
-
-      footer {
-        padding: 24px 24px;
-        flex-direction: column;
-        gap: 8px;
-        text-align: center;
-      }
+      footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
     }
   </style>
 </head>
-
 <body>
 
   <!-- --- NAV --- -->
@@ -630,14 +526,11 @@
 
   <!-- --- HERO --- -->
   <section id="hero">
-    <div class="hero-main">
-      <h1 class="hero-heading">
-        <span>Hi, I'm Raquel Palis</span>
-        <span>Product Designer</span>
-        <span>B2B, B2C &amp; AI Exp.</span>
-      </h1>
-    </div>
-
+    <div class="hero-gradient"></div>
+    <h1 class="hero-heading">
+      <span>Hi, I'm Raquel Palis</span>
+      <span>Product Designer</span>
+    </h1>
     <div class="hero-bottom">
       <p class="hero-bottom-left">
         Based in Barcelona /<br />and Working Worldwide.
@@ -648,24 +541,20 @@
     </div>
   </section>
 
-  <div class="section-divider"></div>
+  <div class="divider"></div>
 
   <!-- --- ABOUT --- -->
   <section id="about">
-    <div class="about-inner reveal">
-      <div class="about-label-col">
-        <span class="section-label">About Me</span>
-      </div>
-      <div class="about-text-col">
-        <p class="about-text">
-          I collaborate with global clients to cultivate compelling and immersive digital experiences through design, user research and AI development.
-        </p>
-        <a href="#contact" class="about-btn">More About Me ↗</a>
-      </div>
+    <p class="about-label reveal">About Me</p>
+    <div class="about-text-col reveal">
+      <p class="about-text">
+        I collaborate with global clients to cultivate compelling and immersive digital experiences through design, user research and AI development.
+      </p>
+      <a href="#contact" class="about-btn">More About Me ↗</a>
     </div>
   </section>
 
-  <div class="section-divider"></div>
+  <div class="divider"></div>
 
   <!-- --- FEATURED WORKS --- -->
   <section id="works">
@@ -674,77 +563,70 @@
       <h2 class="works-heading">Featured Works</h2>
     </div>
 
-    <div class="projects-grid">
+    <div class="works-grid">
 
-      <!-- Project 1 — Heathrow -->
-      <a href="/case-study/heathrow-rewards" class="project-card reveal">
-        <img src="/assets/images/covers/heathrow-cover.png" alt="Heathrow Rewards app — key screens" loading="eager" />
-        <div class="project-overlay">
-          <p class="project-name">Heathrow Rewards</p>
-          <div class="project-bottom">
-            <div class="project-tags">
-              <span class="project-tag">End-to-end Product Design</span>
-              <span class="project-tag">Native Mobile</span>
-              <span class="project-tag">AI UX Vision</span>
-            </div>
-            <span class="project-access">Access →</span>
-          </div>
-        </div>
-      </a>
+      <!-- Row 1 -->
+      <div class="works-row">
 
-      <!-- Project 2 — Lafise -->
-      <a href="/case-study/lafise-bank" class="project-card reveal">
-        <img src="/assets/images/covers/lafise-cover.png" alt="Lafise Bank Poket — app screens" loading="lazy" />
-        <div class="project-overlay">
-          <p class="project-name">Lafise Bank — Poket Project</p>
-          <div class="project-bottom">
-            <div class="project-tags">
-              <span class="project-tag">End-to-End Product Design</span>
-              <span class="project-tag">Service Design</span>
-              <span class="project-tag">Product Owner</span>
+        <a href="/case-study/heathrow-rewards" class="project-card card-heathrow reveal">
+          <img src="/assets/images/covers/heathrow-cover.png" alt="Heathrow Rewards" loading="eager" />
+          <div class="card-gradient"></div>
+          <div class="tile-bar">
+            <div class="tile-info">
+              <span class="tile-name">Heathrow Rewards</span>
+              <span class="tile-sub">Product Design · iOS &amp; Android</span>
             </div>
-            <span class="project-access">Access →</span>
+            <span class="tile-view">View →</span>
           </div>
-        </div>
-      </a>
+        </a>
 
-      <!-- Project 3 — Your Europe -->
-      <a href="/case-study/your-europe" class="project-card reveal">
-        <img src="/assets/images/covers/europe-cover.png" alt="Your Europe — EU Council portal" loading="lazy" />
-        <div class="project-overlay">
-          <p class="project-name">Your Europe — EU Council</p>
-          <div class="project-bottom">
-            <div class="project-tags">
-              <span class="project-tag">UX Research</span>
-              <span class="project-tag">IA Redesign</span>
-              <span class="project-tag">Accessibility</span>
+        <a href="/case-study/lafise-bank" class="project-card card-lafise reveal">
+          <img src="/assets/images/covers/lafise-cover.png" alt="Lafise Bank — Poket" loading="lazy" />
+          <div class="card-gradient"></div>
+          <div class="tile-bar">
+            <div class="tile-info">
+              <span class="tile-name">Lafise Bank — Poket</span>
+              <span class="tile-sub">Fintech · Mobile App</span>
             </div>
-            <span class="project-access">Access →</span>
+            <span class="tile-view">View →</span>
           </div>
-        </div>
-      </a>
+        </a>
 
-      <!-- Project 4 — HM Hospitales -->
-      <a href="/case-study/hm-hospitales" class="project-card reveal">
-        <img src="/assets/images/covers/hm-cover.png" alt="HM Hospitales — website design" loading="lazy" />
-        <div class="project-overlay">
-          <p class="project-name">HM Hospitales</p>
-          <div class="project-bottom">
-            <div class="project-tags">
-              <span class="project-tag">Research</span>
-              <span class="project-tag">Project Management</span>
-              <span class="project-tag">Prototype</span>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="works-row">
+
+        <a href="/case-study/your-europe" class="project-card card-europe reveal">
+          <img src="/assets/images/covers/europe-cover.png" alt="Your Europe — EU Council" loading="lazy" />
+          <div class="card-gradient"></div>
+          <div class="tile-bar">
+            <div class="tile-info">
+              <span class="tile-name">Your Europe — EU</span>
+              <span class="tile-sub">Gov · Web Platform</span>
             </div>
-            <span class="project-access">Access →</span>
+            <span class="tile-view">View →</span>
           </div>
-        </div>
-      </a>
+        </a>
+
+        <a href="/case-study/hm-hospitales" class="project-card card-hm reveal">
+          <img src="/assets/images/covers/hm-cover.png" alt="HM Hospitales" loading="lazy" />
+          <div class="card-gradient"></div>
+          <div class="tile-bar">
+            <div class="tile-info">
+              <span class="tile-name">HM Hospitales</span>
+              <span class="tile-sub">Healthcare · Design System</span>
+            </div>
+            <span class="tile-view">View →</span>
+          </div>
+        </a>
+
+      </div>
 
     </div>
-
   </section>
 
-  <div class="section-divider"></div>
+  <div class="divider" style="margin-top: 80px;"></div>
 
   <!-- --- WHAT I DO --- -->
   <section id="services">
@@ -753,14 +635,13 @@
       <h2 class="services-heading">What I Do</h2>
     </div>
 
-    <!-- Service 1 -->
     <div class="service-row reveal">
       <p class="service-title">AI — UX / UI Design</p>
       <div class="service-cols">
         <div class="service-col">
           <span class="service-item">Mobile Design</span>
           <span class="service-item">Web Design</span>
-          <span class="service-item">UI KIT and WCAG Guidelines</span>
+          <span class="service-item">UI KIT &amp; WCAG Guidelines</span>
         </div>
         <div class="service-col">
           <span class="service-item">Design Systems</span>
@@ -770,7 +651,6 @@
       </div>
     </div>
 
-    <!-- Service 2 -->
     <div class="service-row reveal">
       <p class="service-title">AI Research</p>
       <div class="service-cols">
@@ -780,14 +660,13 @@
           <span class="service-item">Workshop Design</span>
         </div>
         <div class="service-col">
-          <span class="service-item">Facilitation in Multilanguages</span>
-          <span class="service-item">Report and WCAG Analyses</span>
+          <span class="service-item">Facilitation — Multilanguages</span>
+          <span class="service-item">Report &amp; WCAG Analyses</span>
           <span class="service-item">AI Data Refinement</span>
         </div>
       </div>
     </div>
 
-    <!-- Service 3 -->
     <div class="service-row reveal">
       <p class="service-title">AI Product Owner</p>
       <div class="service-cols">
@@ -804,7 +683,6 @@
       </div>
     </div>
 
-    <!-- Service 4 -->
     <div class="service-row reveal">
       <p class="service-title">AI Designer &amp; Vibe Coder</p>
       <div class="service-cols">
@@ -821,56 +699,47 @@
     </div>
   </section>
 
-  <div class="section-divider"></div>
+  <div class="divider"></div>
 
   <!-- --- CONTACT --- -->
   <section id="contact">
     <h2 class="contact-heading reveal">Want to Work Together?</h2>
     <p class="contact-subtitle reveal">Open to Senior Product Designer, Lead UX/UI, and AI-focused roles.</p>
+    <div class="contact-spacer"></div>
     <div class="contact-links reveal">
       <a href="mailto:palis.vm@gmail.com" class="contact-link">palis.vm@gmail.com</a>
       <a href="https://linkedin.com/in/rpalis/" target="_blank" class="contact-link">/in/rpalis/</a>
     </div>
   </section>
 
-  <div class="section-divider"></div>
+  <div class="divider"></div>
 
   <!-- --- FOOTER --- -->
   <footer>
     <p class="footer-copy">© 2026 Raquel Palis. All rights reserved.</p>
-    <p class="footer-copy" style="letter-spacing: 0.04em;">Barcelona / Worldwide</p>
+    <p class="footer-copy">Barcelona / Worldwide</p>
   </footer>
 
   <script>
-    /* --- HERO STAGGER ON LOAD --- */
+    /* --- HERO STAGGER --- */
     window.addEventListener('load', () => {
-      const spans = document.querySelectorAll('.hero-heading span');
-      spans.forEach((span) => {
-        span.classList.add('loaded');
-      });
+      document.querySelectorAll('.hero-heading span').forEach(s => s.classList.add('loaded'));
     });
 
     /* --- SCROLL REVEAL --- */
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.reveal').forEach((el) => {
-      // If already in viewport on load, reveal immediately
+    document.querySelectorAll('.reveal').forEach(el => {
       const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        el.classList.add('visible');
-      } else {
-        revealObserver.observe(el);
-      }
+      if (rect.top < window.innerHeight) el.classList.add('visible');
+      else observer.observe(el);
     });
   </script>
 
