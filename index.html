@@ -255,6 +255,10 @@
       overflow: hidden;
       display: block;
       text-decoration: none;
+      /* Safari fix — forces overflow:hidden to clip transformed children */
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
+      mask-image: radial-gradient(white, black);
+      isolation: isolate;
     }
 
     /* unique bg tints per card */
@@ -263,19 +267,25 @@
     .card-europe    { background: #140f0a; }
     .card-hm        { background: #120d1a; }
 
-    .project-card img {
+    /* image wrapper handles the zoom — card border-radius stays unaffected */
+    .card-img-wrap {
       position: absolute;
-      top: 0;
-      left: 0;
+      inset: 0;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .card-img-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center center;
       display: block;
+      transform: scale(1);
       transition: transform 700ms ease;
     }
 
-    .project-card:hover img { transform: scale(1.04); }
+    .project-card:hover .card-img-wrap img { transform: scale(1.04); }
 
     .card-gradient {
       position: absolute;
@@ -581,7 +591,7 @@
       <!-- Row 1 -->
       <div class="works-row">
         <a href="/case-study/heathrow-rewards" class="project-card card-heathrow reveal">
-          <img src="/assets/images/covers/heathrow-cover.png" alt="Heathrow Rewards" loading="eager" />
+          <div class="card-img-wrap"><img src="/assets/images/covers/heathrow-cover.png" alt="Heathrow Rewards" loading="eager" /></div>
           <div class="card-gradient"></div>
           <div class="tile-bar">
             <div class="tile-info">
@@ -592,7 +602,7 @@
           </div>
         </a>
         <a href="/case-study/lafise-bank" class="project-card card-lafise reveal">
-          <img src="/assets/images/covers/lafise-cover.png" alt="Lafise Bank — Poket" loading="lazy" />
+          <div class="card-img-wrap"><img src="/assets/images/covers/lafise-cover.png" alt="Lafise Bank — Poket" loading="lazy" /></div>
           <div class="card-gradient"></div>
           <div class="tile-bar">
             <div class="tile-info">
@@ -607,7 +617,7 @@
       <!-- Row 2 -->
       <div class="works-row">
         <a href="/case-study/your-europe" class="project-card card-europe reveal">
-          <img src="/assets/images/covers/europe-cover.png" alt="Your Europe — EU Council" loading="lazy" />
+          <div class="card-img-wrap"><img src="/assets/images/covers/europe-cover.png" alt="Your Europe — EU Council" loading="lazy" /></div>
           <div class="card-gradient"></div>
           <div class="tile-bar">
             <div class="tile-info">
@@ -618,7 +628,7 @@
           </div>
         </a>
         <a href="/case-study/hm-hospitales" class="project-card card-hm reveal">
-          <img src="/assets/images/covers/hm-cover.png" alt="HM Hospitales" loading="lazy" />
+          <div class="card-img-wrap"><img src="/assets/images/covers/hm-cover.png" alt="HM Hospitales" loading="lazy" /></div>
           <div class="card-gradient"></div>
           <div class="tile-bar">
             <div class="tile-info">
