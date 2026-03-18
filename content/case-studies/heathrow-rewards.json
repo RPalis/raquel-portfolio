@@ -4,7 +4,12 @@
   "year": "2024–2026",
   "role": "Senior Product UX/UI Designer",
   "client": "Heathrow Airport",
-  "tags": ["End-to-end Product Design", "Native Mobile (iOS & Android)", "User Research", "AI UX Vision"],
+  "tags": [
+    "End-to-end Product Design",
+    "Native Mobile (iOS & Android)",
+    "User Research",
+    "AI UX Vision"
+  ],
   "cover": "/assets/images/heathrow/heathrow-app-features.png",
   "overview": "Heathrow Airport serves tens of millions of passengers annually and operates one of the most complex passenger ecosystems in the world. I led the redesign of the mobile app — transforming a legacy, fragmented experience into a coherent, contextual product used by 1.6 million passengers. The result: +50% unique users, +252% flights added, Gold at the Magellan Awards 2025.",
   "sections": [
@@ -49,12 +54,30 @@
     {
       "type": "metrics",
       "items": [
-        { "value": "+50%", "label": "Increase in unique users" },
-        { "value": "+252%", "label": "Flights added to the app" },
-        { "value": "+15%", "label": "Reserve & Collect revenue uplift" },
-        { "value": "43K+", "label": "Monthly downloads (2024)" },
-        { "value": "1.6M", "label": "App users reached" },
-        { "value": "🏆 Gold", "label": "Magellan Awards 2025" }
+        {
+          "value": "+50%",
+          "label": "Increase in unique users"
+        },
+        {
+          "value": "+252%",
+          "label": "Flights added to the app"
+        },
+        {
+          "value": "+15%",
+          "label": "Reserve & Collect revenue uplift"
+        },
+        {
+          "value": "43K+",
+          "label": "Monthly downloads (2024)"
+        },
+        {
+          "value": "1.6M",
+          "label": "App users reached"
+        },
+        {
+          "value": "🏆 Gold",
+          "label": "Magellan Awards 2025"
+        }
       ]
     },
     {
@@ -70,5 +93,26 @@
     }
   ],
   "next": "lafise-bank",
-  "nextTitle": "Lafise Bank — Poket Project"
+  "nextTitle": "Lafise Bank — Poket Project",
+  "content": [
+    {
+      "subtitle": "",
+      "body": ""
+    },
+    {
+      "subtitle": "",
+      "body": ""
+    },
+    {
+      "subtitle": "",
+      "body": ""
+    },
+    {
+      "subtitle": "",
+      "body": ""
+    }
+  ],
+  "images": [
+    "/assets/images/heathrow-rewards/rewards.png"
+  ]
 }
