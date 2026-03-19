@@ -10,18 +10,16 @@
 
   <style>
     /* --- RESET & BASE --- */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0A0A0A;
-      --text: #FFFFFF;
-      --muted: rgba(255,255,255,0.45);
-      --divider: rgba(255,255,255,0.12);
-      --hover-row: rgba(255,255,255,0.03);
+      --bg:       #0A0A0A;
+      --bg-hero:  #12121a;
+      --text:     #FFFFFF;
+      --muted:    rgba(255,255,255,0.45);
+      --disabled: rgba(255,255,255,0.15);
+      --divider:  rgba(255,255,255,0.08);
+      --surface:  rgba(255,255,255,0.08);
     }
 
     html { scroll-behavior: smooth; }
@@ -42,42 +40,34 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
+      height: 70px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 28px 48px;
-    }
-
-    nav::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(10,10,10,0.92) 0%, transparent 100%);
-      pointer-events: none;
-      z-index: -1;
+      padding: 20px 48px;
+      background: rgba(10,10,10,0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
     .nav-logo {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
     }
 
     .nav-back {
-      font-size: 13px;
+      font-size: 12px;
+      font-weight: 400;
       letter-spacing: 0.08em;
-      text-transform: uppercase;
       color: var(--muted);
       transition: color 200ms ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .nav-back:hover { color: var(--text); }
 
-    /* --- LOADING STATE --- */
+    /* --- STATES --- */
     #loading {
       min-height: 100vh;
       display: flex;
@@ -89,7 +79,6 @@
       text-transform: uppercase;
     }
 
-    /* --- ERROR STATE --- */
     #error {
       display: none;
       min-height: 100vh;
@@ -101,170 +90,332 @@
       padding: 48px;
     }
 
-    #error h1 {
-      font-size: 48px;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
+    #error h1 { font-size: 48px; font-weight: 900; text-transform: uppercase; }
 
-    /* --- CASE STUDY CONTENT --- */
     #content { display: none; }
 
     /* --- HERO --- */
     .cs-hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 120px 48px 56px;
       position: relative;
+      height: 760px;
+      background: var(--bg-hero);
       overflow: hidden;
     }
 
-    .cs-hero-cover {
+    .cs-hero-img {
       position: absolute;
       inset: 0;
-      background: #1A1A1A;
       background-size: cover;
       background-position: center;
-      z-index: 0;
+      opacity: 0.35;
     }
 
-    .cs-hero-cover::after {
-      content: '';
+    .cs-hero-gradient {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.4) 60%, rgba(10,10,10,0.1) 100%);
+      background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.2) 60%, rgba(10,10,10,0) 100%);
     }
 
-    .cs-hero-content {
-      position: relative;
-      z-index: 1;
+    .cs-hero-title {
+      position: absolute;
+      left: 48px;
+      top: 330px;
+      font-size: 88px;
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--text);
+      max-width: 900px;
     }
 
-    .cs-meta-row {
+    .cs-hero-meta {
+      position: absolute;
+      bottom: 64px;
+      left: 48px;
       display: flex;
       gap: 48px;
-      margin-bottom: 32px;
-      flex-wrap: wrap;
     }
 
-    .cs-meta-item {
+    .cs-hero-meta-item {
       display: flex;
       flex-direction: column;
       gap: 4px;
     }
 
-    .cs-meta-label {
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    .cs-meta-value {
-      font-size: 14px;
+    .cs-meta-cap {
+      font-size: 10px;
       font-weight: 400;
-      color: var(--text);
-    }
-
-    .cs-title {
-      font-size: clamp(48px, 7vw, 110px);
-      font-weight: 900;
-      line-height: 0.92;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      letter-spacing: -0.02em;
-      margin-bottom: 32px;
-    }
-
-    .cs-tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .cs-tag {
-      font-size: 11px;
-      letter-spacing: 0.1em;
       color: var(--muted);
+      line-height: 1.5;
     }
 
-    .cs-tag::before { content: "• "; }
+    .cs-meta-val {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* --- INFO BAR --- */
+    .cs-info-bar {
+      display: flex;
+      height: 80px;
+      border-top: 1px solid var(--disabled);
+      border-bottom: 1px solid var(--disabled);
+    }
+
+    .cs-info-cell {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 22px 32px;
+      border-right: 1px solid var(--disabled);
+    }
+
+    .cs-info-cell:last-child { border-right: none; }
+
+    /* --- FULL WIDTH IMAGE --- */
+    .cs-img-full-wrap {
+      padding: 47px;
+    }
+
+    .cs-img-full {
+      width: 100%;
+      height: 640px;
+      border-radius: 24px;
+      border: 1px solid var(--surface);
+      overflow: hidden;
+      background: #1a1a28;
+    }
+
+    .cs-img-full img, .cs-img-full .cs-bg-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background-size: cover;
+      background-position: center;
+    }
 
     /* --- OVERVIEW --- */
     .cs-overview {
       padding: 80px 48px;
-      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
-    .cs-overview-label {
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .cs-overview-label::before { content: "• "; }
-
-    .cs-overview-text {
-      font-size: clamp(20px, 2.4vw, 30px);
+    .cs-overview-cap {
+      font-size: 11px;
       font-weight: 400;
-      line-height: 1.5;
-      color: var(--text);
-    }
-
-    /* --- SECTIONS --- */
-    .cs-sections {
-      padding: 0 48px 80px;
-    }
-
-    .cs-section {
-      border-top: 1px solid var(--divider);
-      padding: 64px 0;
-    }
-
-    /* TEXT SECTION */
-    .cs-section-text .cs-section-label {
-      font-size: 12px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       color: var(--muted);
+    }
+
+    .cs-overview-cap::before { content: "• "; }
+
+    .cs-overview-heading {
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
       text-transform: uppercase;
-      margin-bottom: 24px;
+      max-width: 900px;
     }
 
-    .cs-section-text .cs-section-label::before { content: "• "; }
+    /* --- DIVIDER --- */
+    .cs-divider { height: 1px; background: var(--disabled); }
 
-    .cs-section-body {
+    /* --- GENERIC SECTION --- */
+    .cs-section {
+      padding: 64px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+    }
+
+    .cs-section-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.19em;
+      text-transform: uppercase;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* --- TWO-COL TEXT + IMAGE --- */
+    .cs-two-col {
+      display: flex;
+      gap: 43px;
+      align-items: flex-start;
+    }
+
+    .cs-two-col-text {
+      flex: 0 0 550px;
       font-size: 16px;
-      line-height: 1.75;
-      color: rgba(255,255,255,0.8);
-      max-width: 680px;
+      font-weight: 400;
+      line-height: 1.625;
+      color: var(--text);
+      white-space: pre-line;
     }
 
-    /* IMAGE SECTION */
-    .cs-section-image img {
+    .cs-two-col-image {
+      flex: 1;
+      border: 1px solid var(--surface);
+      border-radius: 16px;
+      overflow: hidden;
+      min-height: 360px;
+    }
+
+    .cs-two-col-image img {
       width: 100%;
-      height: 560px;
+      height: 100%;
       object-fit: cover;
-      background: #1A1A1A;
       display: block;
     }
 
-    .cs-image-placeholder {
-      width: 100%;
-      height: 560px;
-      background: #1A1A1A;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    /* --- WIDE TEXT --- */
+    .cs-text-wide {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.625;
+      color: var(--text);
+      white-space: pre-line;
+      max-width: 840px;
     }
 
-    .cs-image-placeholder span {
+    /* --- TWO-COL LABEL + TEXT --- */
+    .cs-label-row {
+      display: flex;
+      gap: 64px;
+      align-items: flex-start;
+    }
+
+    .cs-label-col {
+      flex: 0 0 180px;
+    }
+
+    .cs-label-body {
+      flex: 1;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.625;
+      color: var(--text);
+      white-space: pre-line;
+    }
+
+    /* --- METHODOLOGY STATS --- */
+    .cs-method-stats {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--surface);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .cs-method-stat {
+      flex: 1;
+      padding: 28px 32px;
+      border-right: 1px solid var(--surface);
+    }
+
+    .cs-method-stat:last-child { border-right: none; }
+
+    .cs-method-stat-val {
+      font-size: 40px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .cs-method-stat-label {
       font-size: 12px;
-      letter-spacing: 0.12em;
-      color: rgba(255,255,255,0.12);
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* --- FINDINGS --- */
+    .cs-sus-row {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .cs-sus-score {
+      font-size: 72px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .cs-sus-label {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    .cs-findings-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .cs-finding {
+      border: 1px solid var(--surface);
+      border-radius: 16px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .cs-finding-id {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .cs-finding-stat {
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .cs-finding-title {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.4;
+    }
+
+    .cs-finding-body {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* --- SECTION IMAGE --- */
+    .cs-section-image-wrap {
+      border: 1px solid var(--surface);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .cs-section-image-wrap img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
     }
 
     .cs-caption {
@@ -272,312 +423,346 @@
       color: var(--muted);
       letter-spacing: 0.06em;
       margin-top: 16px;
+      padding: 0 4px;
     }
 
-    /* METRICS SECTION */
-    .cs-metrics {
+    /* --- METRICS (OUTCOME) --- */
+    .cs-outcome-list {
       display: flex;
+      flex-direction: column;
       gap: 0;
-      border-top: 1px solid var(--divider);
-      padding: 64px 0;
+      border: 1px solid var(--surface);
+      border-radius: 16px;
+      overflow: hidden;
     }
 
-    .cs-metric {
-      flex: 1;
-      padding: 0 48px 0 0;
-      border-right: 1px solid var(--divider);
+    .cs-outcome-item {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      padding: 28px 32px;
+      border-bottom: 1px solid var(--surface);
     }
 
-    .cs-metric:last-child {
-      border-right: none;
-      padding-right: 0;
-      padding-left: 48px;
-    }
+    .cs-outcome-item:last-child { border-bottom: none; }
 
-    .cs-metric:not(:first-child):not(:last-child) {
-      padding: 0 48px;
-    }
-
-    .cs-metric-value {
-      font-size: clamp(40px, 5vw, 72px);
+    .cs-outcome-value {
+      font-size: 48px;
       font-weight: 900;
       line-height: 1;
-      margin-bottom: 12px;
+      letter-spacing: -0.03em;
+      min-width: 140px;
     }
 
-    .cs-metric-label {
-      font-size: 13px;
+    .cs-outcome-label {
+      font-size: 16px;
       color: var(--muted);
-      letter-spacing: 0.06em;
+      line-height: 1.5;
     }
 
     /* --- NEXT PROJECT --- */
     .cs-next {
-      border-top: 1px solid var(--divider);
-      padding: 64px 48px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      padding: 64px 48px;
     }
 
-    .cs-next-label {
-      font-size: 12px;
-      letter-spacing: 0.12em;
+    .cs-next-cap {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
       color: var(--muted);
-      text-transform: uppercase;
       margin-bottom: 12px;
     }
 
-    .cs-next-label::before { content: "• "; }
+    .cs-next-cap::before { content: "• "; }
 
     .cs-next-title {
-      font-size: clamp(24px, 3vw, 48px);
+      font-size: 56px;
       font-weight: 900;
-      text-transform: uppercase;
+      line-height: 1;
       letter-spacing: -0.02em;
+      text-transform: uppercase;
     }
 
     .cs-next-link {
-      font-size: 14px;
-      letter-spacing: 0.06em;
+      font-size: 13px;
+      letter-spacing: 0.04em;
       color: var(--muted);
-      transition: transform 200ms ease, color 200ms ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
       white-space: nowrap;
+      transition: color 200ms ease, transform 200ms ease;
+      display: inline-block;
     }
 
-    .cs-next-link:hover {
-      transform: translateX(6px);
-      color: var(--text);
-    }
+    .cs-next-link:hover { color: var(--text); transform: translateX(6px); }
 
     /* --- FOOTER --- */
     footer {
-      padding: 32px 48px;
+      height: 64px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      border-top: 1px solid var(--divider);
+      justify-content: space-between;
+      padding: 20px 48px;
+      border-top: 1px solid var(--disabled);
     }
 
     .footer-copy {
       font-size: 12px;
       color: var(--muted);
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
     }
 
     /* --- REVEAL --- */
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(24px);
       transition: opacity 700ms ease, transform 700ms ease;
     }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.visible { opacity: 1; transform: none; }
 
     /* --- RESPONSIVE: TABLET 768px --- */
     @media (max-width: 768px) {
-      nav { padding: 24px 32px; }
-      .cs-hero { padding: 100px 32px 48px; }
+      nav { padding: 20px 32px; }
+      .cs-hero { height: 600px; }
+      .cs-hero-title { font-size: clamp(48px, 8vw, 72px); left: 32px; top: 260px; }
+      .cs-hero-meta { left: 32px; gap: 32px; }
+      .cs-img-full-wrap { padding: 24px; }
+      .cs-img-full { height: 400px; }
       .cs-overview { padding: 64px 32px; }
-      .cs-sections { padding: 0 32px 64px; }
+      .cs-section { padding: 48px 32px; gap: 40px; }
+      .cs-two-col { flex-direction: column; }
+      .cs-two-col-text { flex: none; }
+      .cs-label-row { flex-direction: column; gap: 24px; }
+      .cs-label-col { flex: none; }
+      .cs-findings-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
       .cs-next { padding: 48px 32px; flex-direction: column; align-items: flex-start; gap: 32px; }
-      footer { padding: 24px 32px; }
-      .cs-metrics { flex-direction: column; gap: 40px; }
-      .cs-metric, .cs-metric:last-child, .cs-metric:not(:first-child):not(:last-child) {
-        padding: 0;
-        border-right: none;
-        border-bottom: 1px solid var(--divider);
-        padding-bottom: 40px;
-      }
-      .cs-metric:last-child { border-bottom: none; padding-bottom: 0; }
+      .cs-next-title { font-size: clamp(32px, 6vw, 48px); }
+      footer { padding: 20px 32px; }
+      .cs-info-bar { flex-wrap: wrap; height: auto; }
+      .cs-info-cell { min-width: 50%; }
+      .cs-method-stats { flex-direction: column; }
+      .cs-outcome-value { font-size: 36px; min-width: 110px; }
     }
 
     /* --- RESPONSIVE: MOBILE 480px --- */
     @media (max-width: 480px) {
       nav { padding: 20px 24px; }
-      .cs-hero { padding: 90px 24px 40px; }
-      .cs-overview { padding: 56px 24px; }
-      .cs-sections { padding: 0 24px 56px; }
+      .cs-hero { height: 480px; }
+      .cs-hero-title { font-size: clamp(36px, 10vw, 56px); left: 24px; top: 200px; }
+      .cs-hero-meta { left: 24px; bottom: 40px; gap: 24px; flex-wrap: wrap; }
+      .cs-img-full-wrap { padding: 16px; }
+      .cs-img-full { height: 260px; }
+      .cs-overview { padding: 48px 24px; }
+      .cs-overview-heading { font-size: 24px; }
+      .cs-section { padding: 40px 24px; gap: 32px; }
+      .cs-findings-grid { grid-template-columns: 1fr; }
+      .cs-finding-stat { font-size: 36px; }
+      .cs-sus-score { font-size: 56px; }
+      .cs-outcome-value { font-size: 32px; }
       .cs-next { padding: 40px 24px; }
-      footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
-      .cs-section-image img, .cs-image-placeholder { height: 280px; }
+      footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
     }
   </style>
 </head>
-
 <body>
 
   <!-- --- NAV --- -->
   <nav>
     <a href="/" class="nav-logo">Raquel Palis</a>
-    <a href="/" class="nav-back">← Back to Portfolio</a>
+    <a href="/" class="nav-back">← Portfolio</a>
   </nav>
 
-  <!-- --- LOADING --- -->
-  <div id="loading">Loading case study…</div>
+  <div id="loading">Loading…</div>
 
-  <!-- --- ERROR --- -->
   <div id="error">
     <h1>404</h1>
-    <p style="color: var(--muted); font-size: 16px;">Case study not found.</p>
-    <a href="/" style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--divider); padding-bottom: 4px;">← Back to Portfolio</a>
+    <p style="color:var(--muted);font-size:16px;">Case study not found.</p>
+    <a href="/" style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--divider);padding-bottom:4px;">← Back to Portfolio</a>
   </div>
 
-  <!-- --- CASE STUDY CONTENT (rendered by JS) --- -->
   <div id="content"></div>
 
   <script>
-    /* --- CMS RENDERER --- */
-
-    // Get slug from URL: /case-study/heathrow-rewards
+    /* --- SLUG --- */
     function getSlug() {
       const parts = window.location.pathname.split('/');
       return parts[parts.length - 1] || new URLSearchParams(window.location.search).get('slug');
     }
 
-    // Render a section based on its type
-    function renderSection(section) {
-      if (section.type === 'text') {
-        return `
-          <div class="cs-section cs-section-text reveal">
-            ${section.label ? `<p class="cs-section-label">${section.label}</p>` : ''}
-            <p class="cs-section-body">${section.content}</p>
-          </div>`;
-      }
+    /* --- RENDER SECTIONS --- */
+    function renderSection(s) {
 
-      if (section.type === 'image') {
+      /* FULL-WIDTH IMAGE */
+      if (s.type === 'image') {
+        const label = s.label ? `<p class="cs-section-label">${s.label}</p>` : '';
+        const cap   = s.caption ? `<p class="cs-caption">${s.caption}</p>` : '';
         return `
-          <div class="cs-section cs-section-image reveal">
-            <div class="cs-image-placeholder">
-              <span>Image placeholder</span>
+          <div class="cs-section reveal">
+            ${label}
+            <div class="cs-section-image-wrap">
+              <img src="${s.src}" alt="${s.alt || ''}" loading="lazy" />
             </div>
-            ${section.caption ? `<p class="cs-caption">${section.caption}</p>` : ''}
+            ${cap}
           </div>`;
       }
 
-      if (section.type === 'metrics') {
-        const items = section.items.map((item, i) => `
-          <div class="cs-metric">
-            <p class="cs-metric-value">${item.value}</p>
-            <p class="cs-metric-label">${item.label}</p>
+      /* TEXT — two-column label + body */
+      if (s.type === 'text') {
+        return `
+          <div class="cs-section cs-divider-top reveal">
+            <div class="cs-label-row">
+              <div class="cs-label-col">
+                <p class="cs-section-label">${s.label || ''}</p>
+              </div>
+              <div class="cs-label-body">${s.content.replace(/\n/g, '<br>')}</div>
+            </div>
+          </div>`;
+      }
+
+      /* METHODOLOGY */
+      if (s.type === 'methodology') {
+        const stats = (s.stats || []).map(st => `
+          <div class="cs-method-stat">
+            <p class="cs-method-stat-val">${st.value}</p>
+            <p class="cs-method-stat-label">${st.label}</p>
           </div>`).join('');
-        return `<div class="cs-metrics reveal">${items}</div>`;
+        return `
+          <div class="cs-section reveal">
+            <p class="cs-section-label">${s.label || 'METHODOLOGY'}</p>
+            <div class="cs-method-stats">${stats}</div>
+            <div class="cs-label-body">${s.body.replace(/\n/g, '<br>')}</div>
+          </div>`;
+      }
+
+      /* FINDINGS */
+      if (s.type === 'findings') {
+        const cards = (s.items || []).map(f => `
+          <div class="cs-finding">
+            <p class="cs-finding-id">${f.id}</p>
+            <p class="cs-finding-stat">${f.stat}</p>
+            <p class="cs-finding-title">${f.title}</p>
+            <p class="cs-finding-body">${f.body}</p>
+          </div>`).join('');
+        return `
+          <div class="cs-section reveal">
+            <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+              <p class="cs-section-label">${s.label || 'FINDINGS'}</p>
+              ${s.sus ? `<div class="cs-sus-row"><span class="cs-sus-score">${s.sus}</span><span class="cs-sus-label">SUS Score — Marginal (threshold 68+)</span></div>` : ''}
+            </div>
+            <div class="cs-findings-grid">${cards}</div>
+          </div>`;
+      }
+
+      /* METRICS / OUTCOME */
+      if (s.type === 'metrics') {
+        const items = (s.items || []).map(m => `
+          <div class="cs-outcome-item">
+            <p class="cs-outcome-value">${m.value}</p>
+            <p class="cs-outcome-label">${m.label}</p>
+          </div>`).join('');
+        return `
+          <div class="cs-section reveal">
+            <p class="cs-section-label">${s.label || 'OUTCOME'}</p>
+            <div class="cs-outcome-list">${items}</div>
+          </div>`;
       }
 
       return '';
     }
 
-    // Render next project link
-    function renderNext(slug, title) {
-      if (!slug) return '';
-      return `
+    /* --- BUILD PAGE --- */
+    function renderPage(d) {
+      document.title = `${d.title} — Raquel Palis`;
+
+      const heroStyle = d.cover ? `background-image:url('${d.cover}')` : '';
+
+      const sections = (d.sections || []).map(renderSection).join('');
+
+      const next = d.next ? `
+        <div class="cs-divider"></div>
         <div class="cs-next reveal">
           <div>
-            <p class="cs-next-label">Next Project</p>
-            <p class="cs-next-title">${title || slug}</p>
+            <p class="cs-next-cap">Next Project</p>
+            <p class="cs-next-title">${d.nextTitle || d.next}</p>
           </div>
-          <a href="/case-study/${slug}" class="cs-next-link">View Project →</a>
-        </div>`;
-    }
-
-    // Build full page from CMS data
-    function renderPage(data) {
-      document.title = `${data.title} — Raquel Palis`;
-
-      const coverStyle = data.cover
-        ? `background-image: url('${data.cover}');`
-        : '';
-
-      const tags = (data.tags || []).map(t => `<span class="cs-tag">${t}</span>`).join('');
-      const sections = (data.sections || []).map(renderSection).join('');
+          <a href="/case-study/${d.next}" class="cs-next-link">View Project →</a>
+        </div>` : '';
 
       return `
-        <!-- --- HERO --- -->
+        <!-- HERO -->
         <section class="cs-hero">
-          <div class="cs-hero-cover" style="${coverStyle}"></div>
-          <div class="cs-hero-content">
-            <div class="cs-meta-row">
-              ${data.year ? `<div class="cs-meta-item"><span class="cs-meta-label">Year</span><span class="cs-meta-value">${data.year}</span></div>` : ''}
-              ${data.role ? `<div class="cs-meta-item"><span class="cs-meta-label">Role</span><span class="cs-meta-value">${data.role}</span></div>` : ''}
-              ${data.client ? `<div class="cs-meta-item"><span class="cs-meta-label">Client</span><span class="cs-meta-value">${data.client}</span></div>` : ''}
-            </div>
-            <h1 class="cs-title">${data.title}</h1>
-            <div class="cs-tags">${tags}</div>
+          <div class="cs-hero-img" style="${heroStyle}"></div>
+          <div class="cs-hero-gradient"></div>
+          <h1 class="cs-hero-title">${d.title}</h1>
+          <div class="cs-hero-meta">
+            ${d.year     ? `<div class="cs-hero-meta-item"><span class="cs-meta-cap">Year</span><span class="cs-meta-val">${d.year}</span></div>` : ''}
+            ${d.client   ? `<div class="cs-hero-meta-item"><span class="cs-meta-cap">Client</span><span class="cs-meta-val">${d.client}</span></div>` : ''}
+            ${d.role     ? `<div class="cs-hero-meta-item"><span class="cs-meta-cap">Role</span><span class="cs-meta-val">${d.role}</span></div>` : ''}
           </div>
         </section>
 
-        <!-- --- OVERVIEW --- -->
-        ${data.overview ? `
-        <div style="border-top: 1px solid var(--divider);"></div>
+        <!-- INFO BAR -->
+        <div class="cs-info-bar">
+          ${d.year      ? `<div class="cs-info-cell"><span class="cs-meta-cap">Year</span><span class="cs-meta-val">${d.year}</span></div>` : ''}
+          ${d.client    ? `<div class="cs-info-cell"><span class="cs-meta-cap">Client</span><span class="cs-meta-val">${d.client}</span></div>` : ''}
+          ${d.industry  ? `<div class="cs-info-cell"><span class="cs-meta-cap">Industry</span><span class="cs-meta-val">${d.industry}</span></div>` : ''}
+          ${d.duration  ? `<div class="cs-info-cell"><span class="cs-meta-cap">Duration</span><span class="cs-meta-val">${d.duration}</span></div>` : ''}
+          ${d.role && !d.duration ? `<div class="cs-info-cell"><span class="cs-meta-cap">Role</span><span class="cs-meta-val">${d.role}</span></div>` : ''}
+        </div>
+
+        <!-- OVERVIEW -->
+        ${d.overview ? `
         <div class="cs-overview reveal">
-          <p class="cs-overview-label">Overview</p>
-          <p class="cs-overview-text">${data.overview}</p>
-        </div>` : ''}
+          <p class="cs-overview-cap">Overview</p>
+          <h2 class="cs-overview-heading">${d.overview}</h2>
+          ${d.overviewText ? `<p style="font-size:16px;line-height:1.625;color:var(--muted);max-width:760px;">${d.overviewText}</p>` : ''}
+        </div>
+        <div class="cs-divider"></div>` : ''}
 
-        <!-- --- SECTIONS --- -->
-        <div class="cs-sections">${sections}</div>
+        <!-- SECTIONS -->
+        ${sections}
 
-        <!-- --- NEXT PROJECT --- -->
-        <div style="border-top: 1px solid var(--divider);"></div>
-        ${renderNext(data.next, data.nextTitle)}
+        <!-- NEXT -->
+        ${next}
 
-        <!-- --- FOOTER --- -->
+        <!-- FOOTER -->
         <footer>
           <p class="footer-copy">© 2026 Raquel Palis. All rights reserved.</p>
           <p class="footer-copy">Barcelona / Worldwide</p>
-        </footer>
-      `;
+        </footer>`;
     }
 
-    // Scroll reveal
+    /* --- REVEAL --- */
     function initReveal() {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
         });
-      }, { threshold: 0.1 });
+      }, { threshold: 0.08 });
 
       document.querySelectorAll('.reveal').forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight) {
-          el.classList.add('visible');
-        } else {
-          observer.observe(el);
-        }
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight) el.classList.add('visible');
+        else obs.observe(el);
       });
     }
 
-    // Fetch and render
+    /* --- INIT --- */
     async function init() {
       const slug = getSlug();
-
-      if (!slug) {
-        document.getElementById('loading').style.display = 'none';
-        document.getElementById('error').style.display = 'flex';
-        return;
-      }
-
+      if (!slug) { document.getElementById('loading').style.display = 'none'; document.getElementById('error').style.display = 'flex'; return; }
       try {
         const res = await fetch(`/content/case-studies/${slug}.json`);
-        if (!res.ok) throw new Error('Not found');
+        if (!res.ok) throw new Error();
         const data = await res.json();
-
         const content = document.getElementById('content');
         content.innerHTML = renderPage(data);
         content.style.display = 'block';
         document.getElementById('loading').style.display = 'none';
-
         initReveal();
-      } catch (e) {
+      } catch {
         document.getElementById('loading').style.display = 'none';
         document.getElementById('error').style.display = 'flex';
       }

@@ -1,48 +1,94 @@
 {
   "slug": "lafise-bank",
-  "title": "Lafise Bank — Poket Project",
-  "year": "2022",
-  "role": "Product Owner & Lead UX Designer",
+  "title": "Lafise Bank — Poket",
+  "year": "2024",
+  "role": "Lead UX Designer · Product Owner",
   "client": "Lafise Bank",
-  "tags": ["End-to-End Product Design", "Service design", "Product Owner"],
-  "cover": "/assets/images/lafise-cover.jpg",
-  "overview": "Poket is a B2C digital banking product for Lafise Bank — a neobank experience designed from scratch for the Latin American market, focusing on financial inclusion and ease of use.",
+  "industry": "Finance",
+  "duration": "6 Months",
+  "tags": ["End-to-End Product Design", "User Testing", "Product Owner", "iOS & Android"],
+  "cover": "/assets/images/covers/lafise-cover.png",
+  "heroImage": "/assets/images/lafise/lafise-hero-screens.png",
+  "overview": "DISCOVER & IDEATION — USER TESTING RESEARCH · MVP DESIGN PLAN",
+  "overviewText": "User Research for Digital Merchants — A study to understand the needs of small entrepreneurs and validate hypotheses about digital payment products across Central America.",
   "sections": [
     {
+      "type": "image",
+      "src": "/assets/images/lafise/lafise-hero-screens.png",
+      "alt": "Lafise Poket — Final app UI screens across iOS and Android",
+      "caption": "Lafise Bank Poket — Final product UI · iOS & Android · 2024",
+      "size": "full"
+    },
+    {
       "type": "text",
-      "label": "Challenge",
-      "content": "Lafise needed a mobile-first banking product that could compete with emerging neobanks while serving users with varying levels of digital literacy across Central America."
+      "label": "WHAT THE BUSINESS WANTED TO VALIDATE",
+      "content": "01 — Digital Payment Hypotheses: Validate core assumptions about merchant payment behaviour — whether entrepreneurs prefer digital solutions over traditional POS terminals and why.\n\n02 — User Language & Priorities: Understand the mental model and vocabulary of small business owners when interacting with financial apps. Surface unmet needs and latent desires.\n\n03 — Competitive Bias: Identify expectations shaped by competitor apps (WhatsApp Pay, Yappy) to inform differentiated positioning."
+    },
+    {
+      "type": "methodology",
+      "label": "RESEARCH METHODOLOGY",
+      "stats": [
+        { "value": "20", "label": "Participants" },
+        { "value": "5", "label": "User Groups" },
+        { "value": "45 min", "label": "Session Length" },
+        { "value": "100%", "label": "Moderated" }
+      ],
+      "body": "Moderated usability testing with think-aloud protocol. Conducted remotely and in-person across Costa Rica and Panama. High-fidelity clickable Figma prototype covering 5 core flows: Onboarding, Transfer, Payment Request, Dashboard, Account Settings.\n\nUser Groups: Young Professionals (22–30) · Mid-Career (31–45) · University Students (18–22) · Senior Users (55+) · Unbanked Merchants.\n\nMetrics captured: Task completion rate, time-on-task, error rate, SUS score, NPS, and qualitative insights via rainbow spreadsheet analysis."
+    },
+    {
+      "type": "text",
+      "label": "PROCESS",
+      "content": "Discover → Stakeholder interviews · Competitive analysis · User shadowing · Market research\n\nDefine → Affinity mapping · User personas · Jobs-to-be-done · Problem framing\n\nIdeate → Design sprints · Sketching · Wireframes · Flow mapping\n\nDesign → Hi-fi prototypes · Component library · User testing · Iteration cycles"
+    },
+    {
+      "type": "findings",
+      "label": "5 CRITICAL FINDINGS FROM MVP USER TESTING",
+      "sus": "62.5",
+      "items": [
+        { "id": "F1", "title": "Navigation Confusion", "stat": "85%", "body": "Users couldn't locate key features without guidance. Tab labels were ambiguous — 85% of participants couldn't find 'Request Payment'." },
+        { "id": "F2", "title": "Transfer Friction", "stat": "70%", "body": "7-step transfer flow created cognitive overload. 70% expected fewer taps. Fee disclosure only appeared at step 6 of 7." },
+        { "id": "F3", "title": "Auth Overload", "stat": "65%", "body": "Biometric + PIN + OTP in the same session felt excessive. Senior users (55+) gave up on authentication in 40% of cases." },
+        { "id": "F4", "title": "Error Handling", "stat": "55%", "body": "Generic errors ('Something went wrong') caused anxiety. 55% abandoned after first error screen with no recovery path." },
+        { "id": "F5", "title": "Dashboard Clarity", "stat": "80%", "body": "Balance visibility praised by 80% of users. Transaction history was the strongest-performing section — clear and familiar." }
+      ]
     },
     {
       "type": "image",
-      "src": "/assets/images/lafise-research.jpg",
-      "alt": "Service design workshop with Lafise stakeholders",
-      "caption": "Co-design workshops with stakeholders"
+      "src": "/assets/images/lafise/lafise-ux-flow.png",
+      "alt": "Lafise Poket — UX flow map showing full transfer and onboarding journeys",
+      "label": "UX EXPLORATIONS",
+      "caption": "Information Architecture · Flow Mapping · Lo-fi → Hi-fi Iterations across 5 primary journeys",
+      "size": "full"
     },
     {
       "type": "text",
-      "label": "Process",
-      "content": "As both Product Owner and Lead Designer, I defined the product vision, managed the backlog, and ran bi-weekly sprints. Conducted service design workshops across 3 countries to map the full customer journey from onboarding to first transaction."
+      "label": "DESIGN DECISIONS",
+      "content": "01 — Tab Bar Redesign: Moved Rewards to a dedicated tab. Added persistent text labels below all icons. Renamed 'Cobrar' → 'Recibir Pago' for clarity.\n\n02 — SSO Integration: Enabled single sign-on across LAFISE banking products to reduce friction at login and eliminate duplicate auth steps.\n\n03 — Smart Auth Tiers: Biometric-only for transfers under $50. PIN + biometric for $50–$500. Full OTP above $500. Risk-proportional security.\n\n04 — Transfer Flow 7→4 Steps: Consolidated recipient + amount + fee disclosure into a single smart screen. Confirmation simplified to one tap.\n\n05 — Contextual Error System: Replaced generic errors with specific messages + recovery paths. Each error type mapped to a tailored CTA.\n\n06 — Membership Tiers + Rewards: Tiered UI with clear perks per level. Gamification mechanics ('earn & spend') added to transaction confirmations."
     },
     {
       "type": "image",
-      "src": "/assets/images/lafise-design.jpg",
-      "alt": "Poket app UI screens",
-      "caption": "Poket — final product UI"
-    },
-    {
-      "type": "text",
-      "label": "Outcome",
-      "content": "Launched to 50,000 users in the first quarter. The onboarding flow reduced KYC drop-off by 38% through a simplified identity verification UX tailored to local ID formats."
+      "src": "/assets/images/lafise/lafise-iterations.png",
+      "alt": "Lafise Poket — Design iterations with annotations",
+      "label": "DESIGN ITERATIONS",
+      "caption": "Before / After — Dashboard and navigation changes post user testing",
+      "size": "full"
     },
     {
       "type": "metrics",
+      "label": "OUTCOME",
       "items": [
-        { "value": "50K", "label": "Users at launch" },
-        { "value": "-38%", "label": "KYC drop-off" },
-        { "value": "3 countries", "label": "Rolled out across" }
+        { "value": "+42%", "label": "Engagement rate improvement post-launch" },
+        { "value": "-31%", "label": "Drop-off rate at redemption step" },
+        { "value": "4.6★", "label": "App Store rating within 3 months" },
+        { "value": "🏆 Winner", "label": "Magellan Awards 2025 — Best FinTech UX, CALA Region" }
       ]
+    },
+    {
+      "type": "text",
+      "label": "REFLECTION",
+      "content": "Designing Poket taught me that financial inclusion isn't just about features — it's about trust. Every extra authentication step, every ambiguous label, every generic error message erodes confidence in a product that holds people's money. The SUS score of 62.5 was a clear signal, not a failure — it was the data we needed to redesign with purpose. Seeing merchants across Costa Rica and Panama use a simpler, faster product is what the work was really about."
     }
   ],
-  "next": "your-europe"
+  "next": "your-europe",
+  "nextTitle": "Your Europe — EU Council"
 }
