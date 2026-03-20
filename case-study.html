@@ -16,10 +16,10 @@
       --bg:       #0A0A0A;
       --bg-hero:  #12121a;
       --text:     #FFFFFF;
-      --muted:    rgba(255,255,255,0.45);
+      --muted:    rgba(255,255,255,0.55);
       --disabled: rgba(255,255,255,0.15);
       --divider:  rgba(255,255,255,0.08);
-      --surface:  rgba(255,255,255,0.08);
+      --surface:  rgba(255,255,255,0.03);
     }
 
     html { scroll-behavior: smooth; }
@@ -513,6 +513,235 @@
       letter-spacing: 0.08em;
     }
 
+    /* --- SECTION HEADING --- */
+    .cs-h2 {
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.09;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    /* --- BRIEF CARDS --- */
+    .cs-brief-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .cs-brief-card {
+      background: var(--surface);
+      border: 1px solid var(--divider);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .cs-brief-card-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+    .cs-brief-card-title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--text);
+    }
+    .cs-brief-card-body {
+      font-size: 14px;
+      line-height: 1.625;
+      color: var(--muted);
+    }
+
+    /* --- PROCESS CIRCLES --- */
+    .cs-process-circles {
+      display: flex;
+      gap: 80px;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 16px 0;
+    }
+    .cs-process-circle-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+    .cs-process-circle {
+      width: 188px;
+      height: 188px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--disabled);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+    }
+    .cs-process-circle-label {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.3px;
+      color: var(--text);
+      text-align: center;
+      line-height: 1.18;
+    }
+
+    /* --- RESEARCH APPROACH (stats + method blocks) --- */
+    .cs-method-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px 48px;
+    }
+    .cs-method-block {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .cs-method-block-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.5;
+    }
+    .cs-method-block-body {
+      font-size: 14px;
+      line-height: 1.625;
+      color: var(--muted);
+    }
+
+    /* --- PRIORITY MATRIX --- */
+    .cs-matrix-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .cs-matrix-card {
+      background: var(--surface);
+      border: 1px solid var(--divider);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .cs-matrix-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+    .cs-matrix-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .cs-matrix-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 4px;
+    }
+    .cs-matrix-list-item {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+      padding-left: 16px;
+      position: relative;
+    }
+    .cs-matrix-list-item::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: rgba(255,255,255,0.2);
+      font-size: 11px;
+      top: 2px;
+    }
+
+    /* --- DECISION CARDS --- */
+    .cs-decision-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .cs-decision-card {
+      background: var(--surface);
+      border: 1px solid var(--divider);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .cs-decision-card-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+    .cs-decision-card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .cs-decision-card-body {
+      font-size: 13px;
+      line-height: 1.625;
+      color: var(--muted);
+    }
+
+    /* --- OUTCOME STAT CARDS --- */
+    .cs-outcome-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .cs-outcome-stat-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--divider);
+      border-radius: 16px;
+      padding: 28px 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .cs-outcome-stat-val {
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.025em;
+      color: var(--text);
+    }
+    .cs-outcome-stat-label {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.625;
+    }
+
+    /* --- IMAGE ROW (two images side by side) --- */
+    .cs-image-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .cs-image-row .cs-section-image-wrap {
+      height: 480px;
+    }
+    .cs-image-row .cs-section-image-wrap img {
+      height: 100%;
+      object-fit: cover;
+    }
+
     /* --- REVEAL --- */
     .reveal {
       opacity: 0;
@@ -544,6 +773,14 @@
       .cs-info-cell { min-width: 50%; }
       .cs-method-stats { flex-direction: column; }
       .cs-outcome-value { font-size: 36px; min-width: 110px; }
+      .cs-brief-cards { grid-template-columns: 1fr; }
+      .cs-process-circles { flex-direction: column; align-items: flex-start; gap: 32px; }
+      .cs-process-circle { width: 120px; height: 120px; font-size: 32px; }
+      .cs-matrix-grid { grid-template-columns: 1fr; }
+      .cs-decision-cards { grid-template-columns: 1fr; }
+      .cs-outcome-stats-grid { grid-template-columns: 1fr; }
+      .cs-image-row { grid-template-columns: 1fr; }
+      .cs-method-grid { grid-template-columns: 1fr; }
     }
 
     /* --- RESPONSIVE: MOBILE 480px --- */
@@ -669,6 +906,121 @@
           </div>`;
       }
 
+      /* BRIEF CARDS */
+      if (s.type === 'brief-cards') {
+        const cards = (s.items || []).map(c => `
+          <div class="cs-brief-card">
+            <p class="cs-brief-card-num">${c.num}</p>
+            <p class="cs-brief-card-title">${c.title}</p>
+            <p class="cs-brief-card-body">${c.body}</p>
+          </div>`).join('');
+        return `
+          <div class="cs-section reveal">
+            <p class="cs-section-label">${s.label || ''}</p>
+            <div class="cs-brief-cards">${cards}</div>
+          </div>`;
+      }
+
+      /* PROCESS STEPS (visual circles) */
+      if (s.type === 'process-steps') {
+        const icons = ['🔍','📋','💡','🎨'];
+        const steps = (s.steps || []).map((step, i) => `
+          <div class="cs-process-circle-item">
+            <div class="cs-process-circle">${icons[i] || '●'}</div>
+            <p class="cs-process-circle-label">${step}</p>
+          </div>`).join('');
+        return `
+          <div class="cs-section reveal">
+            <p class="cs-section-label">${s.label || 'PROCESS'}</p>
+            <div class="cs-process-circles">${steps}</div>
+          </div>`;
+      }
+
+      /* RESEARCH APPROACH */
+      if (s.type === 'research-approach') {
+        const stats = (s.stats || []).map((st, i, arr) => `
+          <div class="cs-method-stat${i < arr.length - 1 ? '' : ''}">
+            <p class="cs-method-stat-val">${st.value}</p>
+            <p class="cs-method-stat-label">${st.label}</p>
+          </div>`).join('');
+        const methods = (s.methods || []).map(m => `
+          <div class="cs-method-block">
+            <p class="cs-method-block-label">${m.label}</p>
+            <p class="cs-method-block-body">${m.body}</p>
+          </div>`).join('');
+        return `
+          <div class="cs-section reveal">
+            <p class="cs-section-label">${s.label || 'RESEARCH APPROACH'}</p>
+            ${s.heading ? `<p class="cs-h2">${s.heading}</p>` : ''}
+            <div class="cs-method-stats">${stats}</div>
+            ${methods ? `<div class="cs-method-grid">${methods}</div>` : ''}
+          </div>`;
+      }
+
+      /* PRIORITY MATRIX */
+      if (s.type === 'priority-matrix') {
+        const quads = (s.quadrants || []).map(q => `
+          <div class="cs-matrix-card">
+            <p class="cs-matrix-tag" style="color:${q.tagColor || 'var(--muted)'}">${q.tag}</p>
+            <p class="cs-matrix-title">${q.title}</p>
+            <div class="cs-matrix-list">
+              ${(q.items || []).map(item => `<p class="cs-matrix-list-item">${item}</p>`).join('')}
+            </div>
+          </div>`).join('');
+        return `
+          <div class="cs-section reveal">
+            <p class="cs-section-label">${s.label || 'PRIORITY MATRIX'}</p>
+            ${s.heading ? `<p class="cs-h2">${s.heading}</p>` : ''}
+            <div class="cs-matrix-grid">${quads}</div>
+          </div>`;
+      }
+
+      /* DECISION CARDS */
+      if (s.type === 'decision-cards') {
+        const cards = (s.items || []).map(c => `
+          <div class="cs-decision-card">
+            <p class="cs-decision-card-num">${c.num}</p>
+            <p class="cs-decision-card-title">${c.title}</p>
+            <p class="cs-decision-card-body">${c.body}</p>
+          </div>`).join('');
+        return `
+          <div class="cs-section reveal">
+            <p class="cs-section-label">${s.label || 'DESIGN DECISIONS'}</p>
+            ${s.heading ? `<p class="cs-h2">${s.heading}</p>` : ''}
+            <div class="cs-decision-cards">${cards}</div>
+          </div>`;
+      }
+
+      /* OUTCOME STATS (big number cards) */
+      if (s.type === 'outcome-stats') {
+        const cards = (s.items || []).map(c => `
+          <div class="cs-outcome-stat-card">
+            <p class="cs-outcome-stat-val">${c.value}</p>
+            <p class="cs-outcome-stat-label">${c.label}</p>
+          </div>`).join('');
+        return `
+          <div class="cs-section reveal">
+            <p class="cs-section-label">${s.label || 'OUTCOMES'}</p>
+            ${s.heading ? `<p class="cs-h2">${s.heading}</p>` : ''}
+            <div class="cs-outcome-stats-grid">${cards}</div>
+          </div>`;
+      }
+
+      /* IMAGE ROW (two images side by side) */
+      if (s.type === 'image-row') {
+        return `
+          <div class="cs-section reveal">
+            ${s.label ? `<p class="cs-section-label">${s.label}</p>` : ''}
+            ${s.text ? `<p class="cs-text-wide">${s.text}</p>` : ''}
+            <div class="cs-image-row">
+              ${(s.images || []).map(img => `
+                <div class="cs-section-image-wrap">
+                  <img src="${img.src}" alt="${img.alt || ''}" loading="lazy" />
+                </div>`).join('')}
+            </div>
+          </div>`;
+      }
+
       return '';
     }
 
@@ -709,7 +1061,7 @@
           ${d.client    ? `<div class="cs-info-cell"><span class="cs-meta-cap">Client</span><span class="cs-meta-val">${d.client}</span></div>` : ''}
           ${d.industry  ? `<div class="cs-info-cell"><span class="cs-meta-cap">Industry</span><span class="cs-meta-val">${d.industry}</span></div>` : ''}
           ${d.duration  ? `<div class="cs-info-cell"><span class="cs-meta-cap">Duration</span><span class="cs-meta-val">${d.duration}</span></div>` : ''}
-          ${d.role && !d.duration ? `<div class="cs-info-cell"><span class="cs-meta-cap">Role</span><span class="cs-meta-val">${d.role}</span></div>` : ''}
+          ${d.role ? `<div class="cs-info-cell"><span class="cs-meta-cap">Role</span><span class="cs-meta-val">${d.role}</span></div>` : ''}
         </div>
 
         <!-- OVERVIEW -->
