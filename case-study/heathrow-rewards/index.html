@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Heathrow Rewards — Raquel Palis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    /* --- RESET & TOKENS --- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0a0a0a;
+      --bg-hero:  #12121a;
+      --text:     #ffffff;
+      --muted:    rgba(255,255,255,0.55);
+      --disabled: rgba(255,255,255,0.15);
+      --divider:  rgba(255,255,255,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* --- NAV --- */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .nav-back {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      color: var(--muted);
+      transition: color 200ms ease;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    /* --- HERO --- */
+    .hero {
+      background: var(--bg-hero);
+      height: 760px;
+      position: relative;
+      overflow: hidden;
+      margin-top: 70px;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    .hero-title {
+      position: absolute;
+      left: 48px;
+      top: 330px;
+      font-size: 88px;
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -1.76px;
+      text-transform: uppercase;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .hero-meta {
+      position: absolute;
+      left: 48px;
+      bottom: 64px;
+      display: flex;
+      gap: 48px;
+      z-index: 2;
+    }
+
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .meta-label {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 15px;
+    }
+
+    .meta-value {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      line-height: 20px;
+    }
+
+    /* --- INFO BAR --- */
+    .info-bar {
+      display: flex;
+      border-top: 1px solid var(--disabled);
+      border-bottom: 1px solid var(--disabled);
+      height: 80px;
+    }
+
+    .info-cell {
+      flex: 1;
+      padding: 22px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      border-right: 1px solid var(--disabled);
+      overflow: hidden;
+    }
+    .info-cell:last-child { border-right: none; }
+
+    /* --- HERO IMAGE BLOCK --- */
+    .hero-img-block {
+      padding: 47px;
+    }
+
+    .hero-img-frame {
+      border: 1px solid var(--divider);
+      border-radius: 24px;
+      overflow: hidden;
+      height: 640px;
+    }
+
+    .hero-img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* --- OVERVIEW --- */
+    .overview {
+      padding: 80px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      text-transform: uppercase;
+    }
+
+    .section-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      line-height: 20px;
+    }
+
+    .overview-headline {
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.09;
+      letter-spacing: -0.5px;
+    }
+
+    /* --- DIVIDER --- */
+    .divider { height: 1px; background: var(--disabled); }
+
+    /* --- CONTENT SECTIONS --- */
+    .cs-section {
+      padding: 64px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+    }
+
+    /* Problem — two column */
+    .problem-cols {
+      display: flex;
+      gap: 136px;
+      align-items: flex-start;
+    }
+
+    .problem-body {
+      flex: 1;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 26px;
+    }
+
+    .problem-body p { margin-bottom: 0; }
+
+    .problem-aside {
+      width: 356px;
+      height: 568px;
+      flex-shrink: 0;
+      border: 1px solid var(--divider);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .problem-aside img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Solution */
+    .solution-text {
+      max-width: 840px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 26px;
+    }
+
+    .cs-img-full {
+      border: 1px solid var(--divider);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .cs-img-full img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .cs-img-full.tall { height: 600px; }
+    .cs-img-full.tall img { height: 100%; }
+
+    /* Competitor */
+    .competitor-intro {
+      max-width: 840px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 26px;
+    }
+
+    .competitor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 32px;
+    }
+
+    .comp-group {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .comp-name {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.3px;
+      line-height: 26px;
+    }
+
+    .comp-phones {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .comp-phone {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--divider);
+      aspect-ratio: 9/16;
+    }
+
+    .comp-phone img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .comp-takeaways {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .comp-takeaways h3 {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.3px;
+    }
+
+    .comp-takeaways p {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 26px;
+      color: var(--muted);
+    }
+
+    /* Two-col label + body */
+    .two-col {
+      display: flex;
+      gap: 64px;
+      align-items: flex-start;
+      padding: 64px 48px;
+    }
+
+    .two-col-label {
+      width: 128px;
+      flex-shrink: 0;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      line-height: 20px;
+    }
+
+    .two-col-body {
+      flex: 1;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 26px;
+    }
+
+    /* Explorations */
+    .exploration-img {
+      border: 1px solid var(--divider);
+      border-radius: 16px;
+      overflow: hidden;
+      height: 620px;
+    }
+
+    .exploration-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    /* Outcome */
+    .outcome-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 26px;
+    }
+
+    .outcome-img-row {
+      display: flex;
+      gap: 24px;
+    }
+
+    .outcome-img {
+      flex: 1;
+      height: 600px;
+      border: 1px solid var(--divider);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .outcome-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* --- NEXT PROJECT --- */
+    a.next-project-link {
+      padding: 64px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: opacity 200ms ease;
+    }
+
+    a.next-project-link:hover { opacity: 0.75; }
+
+    .next-label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      margin-bottom: 12px;
+      line-height: 17px;
+    }
+
+    .next-title {
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -1.12px;
+      text-transform: uppercase;
+    }
+
+    .next-arrow {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      height: 64px;
+      padding: 20px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      color: var(--muted);
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+
+      .hero { height: auto; min-height: 540px; }
+      .hero-title { font-size: clamp(40px, 10vw, 72px); left: 24px; top: 260px; }
+      .hero-meta { left: 24px; bottom: 32px; gap: 24px; flex-wrap: wrap; }
+
+      .info-bar { flex-wrap: wrap; height: auto; }
+      .info-cell { flex: 1 0 calc(50% - 1px); min-width: 140px; }
+
+      .hero-img-block { padding: 24px; }
+      .hero-img-frame { height: 280px; }
+
+      .overview { padding: 48px 24px; }
+      .overview-headline { font-size: 24px; }
+
+      .cs-section { padding: 48px 24px; gap: 40px; }
+      .problem-cols { flex-direction: column; gap: 40px; }
+      .problem-aside { width: 100%; height: 300px; }
+
+      .competitor-grid { grid-template-columns: 1fr; }
+      .comp-phones { grid-template-columns: 1fr 1fr; }
+
+      .two-col { flex-direction: column; gap: 24px; padding: 48px 24px; }
+      .two-col-label { width: auto; }
+
+      .exploration-img { height: 280px; }
+
+      .outcome-img-row { flex-direction: column; }
+      .outcome-img { height: 300px; }
+
+      a.next-project-link { padding: 48px 24px; flex-direction: column; align-items: flex-start; gap: 24px; }
+      .next-title { font-size: 36px; }
+
+      footer { padding: 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">RAQUEL PALIS</span>
+    <a href="/" class="nav-back">← PORTFOLIO</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img class="hero-overlay" src="/assets/images/heathrow/hero-overlay.png" alt="" aria-hidden="true" />
+    <h1 class="hero-title">HEATHROW<br>REWARDS</h1>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="meta-label">YEAR</span>
+        <span class="meta-value">2023</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="meta-label">CLIENT</span>
+        <span class="meta-value">Heathrow Airport</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="meta-label">CATEGORY</span>
+        <span class="meta-value">Product Design</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO BAR -->
+  <div class="info-bar">
+    <div class="info-cell">
+      <span class="meta-label">YEAR</span>
+      <span class="meta-value">2023</span>
+    </div>
+    <div class="info-cell">
+      <span class="meta-label">CLIENT</span>
+      <span class="meta-value">Heathrow Airport</span>
+    </div>
+    <div class="info-cell">
+      <span class="meta-label">INDUSTRY</span>
+      <span class="meta-value">Travel &amp; Aviation</span>
+    </div>
+    <div class="info-cell">
+      <span class="meta-label">DURATION</span>
+      <span class="meta-value">6 Months</span>
+    </div>
+    <div class="info-cell">
+      <span class="meta-label">ROLE</span>
+      <span class="meta-value">Product Designer</span>
+    </div>
+  </div>
+
+  <!-- HERO FULL-WIDTH IMAGE -->
+  <div class="hero-img-block">
+    <div class="hero-img-frame">
+      <img src="/assets/images/heathrow/hero-fullwidth.png" alt="Heathrow Rewards app screens" />
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="overview">
+    <p class="section-label">OVERVIEW</p>
+    <h2 class="overview-headline">End-to-end loyalty programme<br>redesign for iOS &amp; Android</h2>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PROBLEM -->
+  <section class="cs-section">
+    <p class="section-label">Problem</p>
+    <div class="problem-cols">
+      <div class="problem-body">
+        <p>The existing app was a legacy system with:</p>
+        <br>
+        <p>→ Fragmented user journeys.<br>
+        → Limited contextual relevance.<br>
+        → Low user engagement with the loyalty program and user drop-offs.<br>
+        → Low CLTV.<br>
+        → Inconsistent UX patterns.</p>
+        <br>
+        <p>The business objective was to increase passenger engagement and revenue while maintaining enterprise-grade accessibility, performance, scalability and stretching the customer lifetime value.</p>
+        <br>
+        <p>User has 3 apps to access the same ecosystem.<br>
+        The login isn't persistent meaning the user have always login back.<br>
+        — This causes friction<br>
+        — Low user retention<br>
+        — Low rate of new account open<br>
+        — Legacy system didn't hold the user data or user profile information to create APIs to feed meaningful experiences that drives revenue and user satisfaction</p>
+      </div>
+      <div class="problem-aside">
+        <img src="/assets/images/heathrow/problem-flow.png" alt="Heathrow app flow overview" />
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SOLUTION -->
+  <section class="cs-section">
+    <p class="section-label">Solution</p>
+    <div class="solution-text">
+      <p>→ Bring Rewards as a vertical on the Tab bar.<br>
+      → SSO Integration<br>
+      → User account creation to manage points, flights, bookings, payment methods, and user profile information.<br>
+      → Split the Journey by membership tiers and clearly articulate the value proposition for each.<br>
+      → Bring Offers, Vouchers, App Settings, Refer a Friend as native flow<br>
+      → Interactive and modern components to enhance user desirability.</p>
+    </div>
+    <div class="cs-img-full">
+      <img src="/assets/images/heathrow/solution-fullwidth.png" alt="Heathrow redesigned solution screens" />
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- COMPETITOR ANALYSIS -->
+  <section class="cs-section">
+    <p class="section-label">Competitor Analyses</p>
+    <div class="competitor-intro">
+      <p>→ Product: Rewards model — Customer lifetime Value.<br>
+      → Reward Tier dashboard.<br>
+      → Navigation — Layovers and levels.<br>
+      → Dashboard Structure: Information architecture<br>
+      → Content and gamification tactic</p>
+    </div>
+    <div class="competitor-grid">
+      <div class="comp-group">
+        <p class="comp-name">Changi Airport</p>
+        <div class="comp-phones">
+          <div class="comp-phone"><img src="/assets/images/heathrow/competitor-b.png" alt="Changi Airport app screen 1" /></div>
+          <div class="comp-phone"><img src="/assets/images/heathrow/competitor-a.png" alt="Changi Airport app screen 2" /></div>
+        </div>
+      </div>
+      <div class="comp-group">
+        <p class="comp-name">Rewards+</p>
+        <div class="comp-phones">
+          <div class="comp-phone"><img src="/assets/images/heathrow/competitor-c.png" alt="Rewards+ app screen 1" /></div>
+          <div class="comp-phone"><img src="/assets/images/heathrow/competitor-d.png" alt="Rewards+ app screen 2" /></div>
+        </div>
+      </div>
+      <div class="comp-group" style="gap: 48px;">
+        <div class="comp-takeaways">
+          <h3>Take Aways</h3>
+          <p>→ Product: Rewards model — Customer lifetime Value.<br>
+          → Reward Tier dashboard.<br>
+          → Navigation — Layovers and levels.<br>
+          → Dashboard Structure: Information architecture<br>
+          → Content and gamification tactics</p>
+        </div>
+        <div class="comp-takeaways">
+          <h3>Take Aways</h3>
+          <p>→ RevPoints offers a tangible cashback model (3% on partners) instead of abstract points, making savings clearer for users.<br>
+          → A search-first navigation simplifies finding products without learning the IA.<br>
+          → Bundled lifestyle categories combine services for easier cross-selling.<br>
+          → The "Do some good" feature enhances loyalty by adding emotional value beyond financial incentives.<br>
+          → Heathrow can leverage its physical presence for contextual, location-aware triggers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USER JOURNEY -->
+  <div class="two-col">
+    <p class="two-col-label">User Journey</p>
+    <div class="two-col-body">
+      <p>→ Reduces cognitive load in high-stress, time-sensitive environments.<br>
+      → Scales across diverse passenger profiles and travel intents.<br>
+      → Drives measurable commercial impact without compromising trust.<br>
+      → Enables AI-driven personalisation responsibly at a global scale.<br>
+      → Make sure the user understands the points system 'earn and spend'.<br>
+      → Review the perks value proposition, eliminating perks ambiguity.</p>
+    </div>
+  </div>
+
+  <!-- CHALLENGE -->
+  <div class="two-col" style="padding-top: 0;">
+    <p class="two-col-label">Challenge</p>
+    <div class="two-col-body">
+      <p>→ Reduces cognitive load in high-stress, time-sensitive environments.<br>
+      → Scales across diverse passenger profiles and travel intents.<br>
+      → Drives measurable commercial impact without compromising trust.<br>
+      → Enables AI-driven personalisation responsibly at a global scale.<br>
+      → Make sure the user understands the points system 'earn and spend'.<br>
+      → Review the perks value proposition, eliminating perks ambiguity.</p>
+    </div>
+  </div>
+
+  <!-- UX EXPLORATIONS -->
+  <section class="cs-section">
+    <p class="section-label">UX — Explorations</p>
+    <div class="exploration-img">
+      <img src="/assets/images/heathrow/ux-explorations.png" alt="UX explorations and wireframes" />
+    </div>
+  </section>
+
+  <!-- UI EXPLORATIONS 1 -->
+  <section class="cs-section" style="padding-top: 0;">
+    <p class="section-label">UI — Explorations</p>
+    <div class="exploration-img">
+      <img src="/assets/images/heathrow/ui-explorations-1.png" alt="UI explorations round 1" />
+    </div>
+  </section>
+
+  <!-- UI EXPLORATIONS 2 -->
+  <section class="cs-section" style="padding-top: 0;">
+    <p class="section-label">UI — Explorations</p>
+    <div class="exploration-img">
+      <img src="/assets/images/heathrow/ui-explorations-2.png" alt="UI explorations round 2" />
+    </div>
+  </section>
+
+  <!-- OUTCOME -->
+  <section class="cs-section">
+    <p class="section-label">Outcome</p>
+    <div class="outcome-bullets">
+      <p>→&nbsp; +42% engagement rate improvement post-launch</p>
+      <p>→&nbsp; −31% drop-off at the redemption step</p>
+      <p>→&nbsp; 4.6★ App Store rating within 3 months</p>
+    </div>
+    <div class="outcome-img-row">
+      <div class="outcome-img">
+        <img src="/assets/images/heathrow/outcome-detail.png" alt="Outcome — detail view" />
+      </div>
+      <div class="outcome-img">
+        <img src="/assets/images/heathrow/outcome-flow.png" alt="Outcome — flow overview" />
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- NEXT PROJECT -->
+  <a href="/case-study/lafise-bank" class="next-project-link">
+    <div>
+      <p class="next-label">• NEXT PROJECT</p>
+      <p class="next-title">LAFISE BANK</p>
+    </div>
+    <span class="next-arrow">View Project →</span>
+  </a>
+
+  <div class="divider"></div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Raquel Palis. All rights reserved.</span>
+    <span>Barcelona / Worldwide</span>
+  </footer>
+
+</body>
+</html>

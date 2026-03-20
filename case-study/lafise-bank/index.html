@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lafise Bank Pocket — Raquel Palis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    /* --- RESET & TOKENS --- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0a0a0a;
+      --bg-hero:  #12121a;
+      --text:     #ffffff;
+      --muted:    rgba(255,255,255,0.55);
+      --muted-lo: rgba(255,255,255,0.35);
+      --disabled: rgba(255,255,255,0.15);
+      --divider:  rgba(255,255,255,0.08);
+      --surface:  rgba(255,255,255,0.03);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* --- NAV --- */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .nav-back {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      color: var(--muted);
+      transition: color 200ms ease;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    /* --- HERO --- */
+    .hero {
+      background: var(--bg-hero);
+      height: 760px;
+      position: relative;
+      overflow: hidden;
+      margin-top: 70px;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    .hero-title {
+      position: absolute;
+      left: 48px;
+      top: 330px;
+      font-size: 88px;
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -1.76px;
+      text-transform: uppercase;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .hero-meta {
+      position: absolute;
+      left: 48px;
+      bottom: 64px;
+      display: flex;
+      gap: 48px;
+      z-index: 2;
+    }
+
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .meta-label {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 15px;
+    }
+
+    .meta-value {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      line-height: 20px;
+    }
+
+    /* --- INFO BAR --- */
+    .info-bar {
+      display: flex;
+      border-top: 1px solid var(--disabled);
+      border-bottom: 1px solid var(--disabled);
+      height: 80px;
+    }
+
+    .info-cell {
+      flex: 1;
+      padding: 22px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      border-right: 1px solid var(--disabled);
+      overflow: hidden;
+    }
+    .info-cell:last-child { border-right: none; }
+
+    /* --- HERO IMAGE BLOCK --- */
+    .hero-img-block { padding: 47px; }
+
+    .hero-img-frame {
+      border: 1px solid var(--divider);
+      border-radius: 24px;
+      overflow: hidden;
+      height: 640px;
+    }
+
+    .hero-img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* --- OVERVIEW --- */
+    .overview {
+      padding: 80px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .caption-label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      line-height: 17px;
+    }
+
+    .section-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      line-height: 20px;
+    }
+
+    .h1 {
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.09;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+    }
+
+    .h2 {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.3px;
+      line-height: 26px;
+    }
+
+    /* --- DIVIDER --- */
+    .divider { height: 1px; background: var(--disabled); }
+
+    /* --- SECTIONS --- */
+    .cs-section {
+      padding: 64px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+    }
+
+    /* Problem two-col */
+    .problem-cols {
+      display: flex;
+      gap: 43px;
+      align-items: flex-start;
+    }
+
+    .problem-text {
+      width: 590px;
+      flex-shrink: 0;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 26px;
+    }
+
+    .problem-image {
+      flex: 1;
+      height: 402px;
+      border: 1px solid var(--divider);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .problem-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Brief cards */
+    .brief-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .brief-card {
+      background: var(--surface);
+      border: 1px solid var(--divider);
+      border-radius: 16px;
+      padding: 33px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-height: 205px;
+    }
+
+    .brief-card-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.1px;
+      color: var(--muted-lo);
+      line-height: 16.5px;
+    }
+
+    .brief-card-title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      line-height: 22.5px;
+    }
+
+    .brief-card-body {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 22.75px;
+      color: var(--muted);
+      flex: 1;
+    }
+
+    /* Process steps */
+    .process-steps {
+      display: flex;
+      gap: 137px;
+      align-items: center;
+      padding-left: 64px;
+    }
+
+    .process-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .process-circle {
+      width: 188px;
+      height: 188px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--divider);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .process-circle img {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+    }
+
+    .process-label {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.3px;
+      text-align: center;
+    }
+
+    /* Research stats bar */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--divider);
+      border-radius: 16px;
+      overflow: hidden;
+      height: 130px;
+    }
+
+    .stat-box {
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-right: 1px solid var(--divider);
+    }
+    .stat-box:last-child { border-right: none; }
+
+    .stat-value {
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: -1.2px;
+      line-height: 48px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Method grid */
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px 22px;
+    }
+
+    .method-block {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .method-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.65px;
+      text-transform: uppercase;
+      color: var(--muted-lo);
+      line-height: 19.5px;
+    }
+
+    .method-body {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 22.75px;
+      color: var(--muted);
+    }
+
+    /* Full-width images */
+    .cs-img-full {
+      border: 1px solid var(--divider);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .cs-img-full img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cs-img-full.h-500 { height: 500px; }
+    .cs-img-full.h-500 img { height: 100%; object-fit: cover; }
+
+    .cs-img-full.h-390 { height: 390px; }
+    .cs-img-full.h-390 img { height: 100%; object-fit: cover; }
+
+    .cs-img-full.h-834 { height: 834px; }
+    .cs-img-full.h-834 img { height: 100%; object-fit: cover; }
+
+    /* Findings */
+    .findings-header {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .sus-badge {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--divider);
+      border-radius: 16px;
+      padding: 17px 29px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .sus-value {
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: -1.2px;
+      line-height: 48px;
+    }
+
+    .sus-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .finding-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .finding-card {
+      background: var(--surface);
+      border: 1px solid var(--divider);
+      border-radius: 16px;
+      padding: 29px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .finding-card.full-width { grid-column: 1 / -1; }
+
+    .finding-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.32px;
+      color: var(--muted-lo);
+      line-height: 16.5px;
+    }
+
+    .finding-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 24px;
+    }
+
+    .finding-body {
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 21.125px;
+      color: var(--muted);
+    }
+
+    /* Priority matrix */
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      height: 410px;
+    }
+
+    .matrix-card {
+      background: var(--surface);
+      border: 1px solid var(--divider);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .matrix-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      line-height: 15px;
+    }
+
+    .matrix-title {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 25.5px;
+      margin-bottom: 4px;
+    }
+
+    .matrix-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .matrix-list li {
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 19.5px;
+      color: var(--muted);
+      display: flex;
+      gap: 8px;
+    }
+
+    .matrix-list li::before {
+      content: "→";
+      color: rgba(255,255,255,0.2);
+      flex-shrink: 0;
+    }
+
+    /* Decision cards */
+    .decision-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .decision-card {
+      background: var(--surface);
+      border: 1px solid var(--divider);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 200px;
+    }
+
+    .decision-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.32px;
+      color: rgba(255,255,255,0.3);
+      line-height: 16.5px;
+    }
+
+    .decision-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 24px;
+    }
+
+    .decision-body {
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 21.125px;
+      color: var(--muted);
+      flex: 1;
+    }
+
+    /* Image pairs */
+    .img-pair {
+      display: flex;
+      gap: 64px;
+    }
+
+    .img-pair > * {
+      flex: 1;
+      border: 1px solid var(--divider);
+      border-radius: 16px;
+      overflow: hidden;
+      height: 588px;
+    }
+
+    .img-pair img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .img-pair-726 > * { height: 726px; }
+
+    /* Outcome stats */
+    .outcome-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .outcome-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--divider);
+      border-radius: 16px;
+      padding: 33px 29px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .outcome-value {
+      font-size: 56px;
+      font-weight: 900;
+      letter-spacing: -1.4px;
+      line-height: 56px;
+    }
+
+    .outcome-label {
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 21.125px;
+      color: var(--muted);
+    }
+
+    /* Iterations text-with-body layout */
+    .section-with-body {
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+    }
+
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+    }
+
+    .body-text {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 26px;
+    }
+
+    /* --- NEXT PROJECT --- */
+    a.next-project-link {
+      padding: 64px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: opacity 200ms ease;
+    }
+    a.next-project-link:hover { opacity: 0.75; }
+
+    .next-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .next-title {
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -1.12px;
+      text-transform: uppercase;
+    }
+
+    .next-arrow {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      height: 64px;
+      padding: 20px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      color: var(--muted);
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+
+      .hero { height: auto; min-height: 540px; }
+      .hero-title { font-size: clamp(40px, 10vw, 72px); left: 24px; top: 260px; }
+      .hero-meta { left: 24px; bottom: 32px; gap: 24px; flex-wrap: wrap; }
+
+      .info-bar { flex-wrap: wrap; height: auto; }
+      .info-cell { flex: 1 0 calc(50% - 1px); min-width: 140px; }
+
+      .hero-img-block { padding: 24px; }
+      .hero-img-frame { height: 280px; }
+
+      .overview { padding: 48px 24px; }
+      .h1 { font-size: 24px; }
+
+      .cs-section { padding: 48px 24px; gap: 40px; }
+
+      .problem-cols { flex-direction: column; }
+      .problem-text { width: 100%; }
+      .problem-image { width: 100%; height: 280px; }
+
+      .brief-cards { grid-template-columns: 1fr; }
+      .process-steps { gap: 48px; padding-left: 0; flex-wrap: wrap; justify-content: center; }
+      .stats-bar { grid-template-columns: 1fr 1fr; height: auto; }
+      .stat-box { border-bottom: 1px solid var(--divider); }
+      .method-grid { grid-template-columns: 1fr; gap: 32px; }
+      .finding-cards { grid-template-columns: 1fr; }
+      .finding-card.full-width { grid-column: auto; }
+      .matrix-grid { grid-template-columns: 1fr; height: auto; }
+      .decision-grid { grid-template-columns: 1fr; }
+      .img-pair { flex-direction: column; gap: 16px; }
+      .img-pair > * { height: 300px; }
+      .img-pair-726 > * { height: 300px; }
+      .outcome-stats { grid-template-columns: 1fr; }
+      .outcome-value { font-size: 40px; }
+
+      a.next-project-link { padding: 48px 24px; flex-direction: column; align-items: flex-start; gap: 24px; }
+      .next-title { font-size: 36px; }
+      footer { padding: 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">RAQUEL PALIS</span>
+    <a href="/" class="nav-back">← PORTFOLIO</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img class="hero-overlay" src="/assets/images/lafise/hero-overlay.png" alt="" aria-hidden="true" />
+    <h1 class="hero-title">LAFISE BANK<br>POCKET</h1>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="meta-label">YEAR</span>
+        <span class="meta-value">2024</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="meta-label">CLIENT</span>
+        <span class="meta-value">Lafise Bank</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="meta-label">CATEGORY</span>
+        <span class="meta-value">Product Design / Product Research</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO BAR -->
+  <div class="info-bar">
+    <div class="info-cell">
+      <span class="meta-label">YEAR</span>
+      <span class="meta-value">2024</span>
+    </div>
+    <div class="info-cell">
+      <span class="meta-label">CLIENT</span>
+      <span class="meta-value">Lafise Bank</span>
+    </div>
+    <div class="info-cell">
+      <span class="meta-label">INDUSTRY</span>
+      <span class="meta-value">Finance</span>
+    </div>
+    <div class="info-cell">
+      <span class="meta-label">DURATION</span>
+      <span class="meta-value">6 Months</span>
+    </div>
+    <div class="info-cell">
+      <span class="meta-label">ROLE</span>
+      <span class="meta-value">Product Design / Product Research</span>
+    </div>
+  </div>
+
+  <!-- HERO FULL-WIDTH IMAGE -->
+  <div class="hero-img-block">
+    <div class="hero-img-frame">
+      <img src="/assets/images/lafise/hero-fullwidth.png" alt="Lafise Bank Pocket app screens" />
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="overview">
+    <p class="caption-label">• OVERVIEW</p>
+    <h2 class="h1">DISCOVER AND IDEATION — USER TESTING RESEARCH<br>MVP Design Plan</h2>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- WHAT THE BUSINESS WANTED TO VALIDATE -->
+  <section class="cs-section">
+    <p class="section-label">What the Business Wanted to Validate:</p>
+    <div class="problem-cols">
+      <div class="problem-text">
+        <p>LAFISE Bank is launching a new mobile banking MVP for its Central American markets. Before committing to development, the product team needed to validate that real users could complete core banking tasks without friction — and identify critical blockers before they reach production.</p>
+        <br>
+        <p>🎯 Research Objectives<br>
+        • Validate hypotheses on digital payment needs<br>
+        • Understand the priorities and language of the merchant user<br>
+        • Identify biases from previous experiences with other apps</p>
+        <br>
+        <p>📊 Key Characteristics<br>
+        • Entrepreneurs with a minimum of 6 months of experience<br>
+        • Do not qualify for traditional bank card terminals<br>
+        • Pay high fees on POS or are unaware of alternatives like Poket</p>
+      </div>
+      <div class="problem-image">
+        <img src="/assets/images/lafise/problem-flow.png" alt="Lafise MVP flow overview" />
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- RESEARCH BRIEF — BRIEF CARDS -->
+  <section class="cs-section">
+    <div>
+      <p class="caption-label" style="margin-bottom: 56px;">• Research Brief</p>
+      <p class="h1" style="margin-bottom: 56px;">What the Business Wanted to Validate</p>
+      <div class="brief-cards">
+        <div class="brief-card">
+          <span class="brief-card-num">01</span>
+          <p class="brief-card-title">Digital Payment Hypotheses</p>
+          <p class="brief-card-body">Validate core assumptions about merchant payment behaviour — whether entrepreneurs prefer digital solutions over traditional POS terminals and why.</p>
+        </div>
+        <div class="brief-card">
+          <span class="brief-card-num">02</span>
+          <p class="brief-card-title">User Language &amp; Priorities</p>
+          <p class="brief-card-body">Understand the mental model and vocabulary of small business owners when interacting with financial apps. Surface unmet needs and latent desires.</p>
+        </div>
+        <div class="brief-card">
+          <span class="brief-card-num">03</span>
+          <p class="brief-card-title">Competitive Bias</p>
+          <p class="brief-card-body">Identify expectations and biases shaped by prior experiences with competitor apps (WhatsApp Pay, Yappy) to inform differentiated positioning.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="cs-section">
+    <p class="section-label">Process</p>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="process-circle">
+          <img src="/assets/images/lafise/icon-discover.png" alt="Discover" />
+        </div>
+        <p class="process-label">Discover</p>
+      </div>
+      <div class="process-step">
+        <div class="process-circle">
+          <img src="/assets/images/lafise/icon-define.png" alt="Define" />
+        </div>
+        <p class="process-label">Define</p>
+      </div>
+      <div class="process-step">
+        <div class="process-circle">
+          <img src="/assets/images/lafise/icon-ideate.png" alt="Ideate" />
+        </div>
+        <p class="process-label">Ideate</p>
+      </div>
+      <div class="process-step">
+        <div class="process-circle">
+          <img src="/assets/images/lafise/icon-design.png" alt="Design" />
+        </div>
+        <p class="process-label">Design</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH APPROACH -->
+  <section class="cs-section">
+    <div>
+      <p class="caption-label" style="margin-bottom: 56px;">• Methodology</p>
+      <p class="h1" style="margin-bottom: 56px;">Research Approach</p>
+      <div class="stats-bar" style="margin-bottom: 48px;">
+        <div class="stat-box">
+          <span class="stat-value">20</span>
+          <span class="stat-label">Participants</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-value">5</span>
+          <span class="stat-label">User Groups</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-value">45m</span>
+          <span class="stat-label">Session Length</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-value">100%</span>
+          <span class="stat-label">Moderated</span>
+        </div>
+      </div>
+      <div class="method-grid">
+        <div class="method-block">
+          <p class="method-title">Test Format</p>
+          <p class="method-body">Moderated usability testing with think-aloud protocol. Conducted remotely and in-person across Costa Rica and Panama.</p>
+        </div>
+        <div class="method-block">
+          <p class="method-title">User Groups</p>
+          <p class="method-body">Young Professionals (22–30), Mid-Career (31–45), University Students (18–22), Senior Users (55+), Unbanked Merchants.</p>
+        </div>
+        <div class="method-block">
+          <p class="method-title">Prototype</p>
+          <p class="method-body">High-fidelity clickable Figma prototype covering 5 core flows: Onboarding, Transfer, Payment Request, Dashboard, Account Settings.</p>
+        </div>
+        <div class="method-block">
+          <p class="method-title">Metrics Captured</p>
+          <p class="method-body">Task completion rate, time-on-task, error rate, SUS score, NPS, and qualitative insights.</p>
+        </div>
+        <div class="method-block">
+          <p class="method-title">Recording</p>
+          <p class="method-body">Screen + audio recording with consent. Sessions transcribed and tagged using affinity mapping.</p>
+        </div>
+        <div class="method-block">
+          <p class="method-title">Analysis Method</p>
+          <p class="method-body">Rainbow spreadsheet analysis, SUS scoring per group, priority severity matrix (impact × frequency).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH IMAGES -->
+  <section class="cs-section" style="padding-top: 0; gap: 24px;">
+    <div class="cs-img-full h-500">
+      <img src="/assets/images/lafise/research-img1.png" alt="Research sessions" />
+    </div>
+    <div class="cs-img-full h-390">
+      <img src="/assets/images/lafise/research-img2.png" alt="Research affinity map" />
+    </div>
+    <div class="cs-img-full h-834">
+      <img src="/assets/images/lafise/research-img3.png" alt="Research findings overview" />
+    </div>
+  </section>
+
+  <!-- USABILITY TESTING FINDINGS -->
+  <section class="cs-section">
+    <p class="section-label">Usability Testing Findings</p>
+    <div class="findings-header">
+      <h2 class="h1" style="flex: 1;">5 Critical Findings From MVP Testing</h2>
+      <div class="sus-badge">
+        <span class="sus-value">62.5</span>
+        <span class="sus-label">SUS Score · Marginal</span>
+      </div>
+    </div>
+    <div class="finding-cards">
+      <div class="finding-card">
+        <span class="finding-tag">F1</span>
+        <p class="finding-title">Navigation Confusion</p>
+        <p class="finding-body">85% of participants couldn't locate 'Request Payment' without guidance. Tab labels were ambiguous — users expected task-based language, not category names.</p>
+      </div>
+      <div class="finding-card">
+        <span class="finding-tag">F2</span>
+        <p class="finding-title">Transfer Friction</p>
+        <p class="finding-body">The money transfer flow required 7 steps. 70% of users expected fewer taps, influenced by WhatsApp Pay and Sinpe Móvil. Fee disclosure only appeared at step 6.</p>
+      </div>
+      <div class="finding-card">
+        <span class="finding-tag">F3</span>
+        <p class="finding-title">Auth Overload</p>
+        <p class="finding-body">Biometric + PIN + OTP on the same session felt excessive to 65% of users — particularly seniors (55+), 40% of whom abandoned during authentication.</p>
+      </div>
+      <div class="finding-card">
+        <span class="finding-tag">F4</span>
+        <p class="finding-title">Error Handling</p>
+        <p class="finding-body">Generic error messages caused anxiety. 55% of users abandoned after the first error screen with no clear recovery path or retry option visible.</p>
+      </div>
+      <div class="finding-card full-width">
+        <span class="finding-tag">F5 · Positive</span>
+        <p class="finding-title">Dashboard Clarity</p>
+        <p class="finding-body">Balance visibility praised by 80% of users. The transaction list was clear and familiar — the strongest-performing section and a validated foundation to build on.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PRIORITY MATRIX -->
+  <section class="cs-section">
+    <p class="section-label">Priority Matrix</p>
+    <p class="h1">Impact vs Effort — Priority Framework</p>
+    <div class="matrix-grid">
+      <div class="matrix-card">
+        <p class="matrix-tag" style="color: #05df72;">High Impact · Low Effort</p>
+        <p class="matrix-title">Quick Wins</p>
+        <ul class="matrix-list">
+          <li>Rename nav labels</li>
+          <li>Add text to bottom bar icons</li>
+          <li>Fee visibility at step 2</li>
+        </ul>
+      </div>
+      <div class="matrix-card">
+        <p class="matrix-tag" style="color: #51a2ff;">High Impact · High Effort</p>
+        <p class="matrix-title">Strategic</p>
+        <ul class="matrix-list">
+          <li>Streamline transfer flow (7→4 steps)</li>
+          <li>Risk-tiered authentication</li>
+          <li>Full error recovery system</li>
+        </ul>
+      </div>
+      <div class="matrix-card">
+        <p class="matrix-tag" style="color: rgba(255,255,255,0.35);">Low Impact · Low Effort</p>
+        <p class="matrix-title">Low Priority</p>
+        <ul class="matrix-list">
+          <li>Onboarding illustration updates</li>
+          <li>Tooltip text polish</li>
+          <li>Success screen animations</li>
+        </ul>
+      </div>
+      <div class="matrix-card">
+        <p class="matrix-tag" style="color: #ff6467;">Low Impact · High Effort</p>
+        <p class="matrix-title">Reconsider</p>
+        <ul class="matrix-list">
+          <li>Full biometric overhaul</li>
+          <li>Dashboard gamification</li>
+          <li>Merchant analytics dashboard V1</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN DECISIONS -->
+  <section class="cs-section" style="padding-top: 0;">
+    <p class="section-label">Design Decisions</p>
+    <p class="h1">How We Solved It</p>
+    <div class="decision-grid">
+      <div class="decision-card">
+        <span class="decision-num">01</span>
+        <p class="decision-title">IA Redefinition</p>
+        <p class="decision-body">The tabs Mi Pocket and Mi Cuenta are now tab bar main app entry points. Profile now lives in the top-right corner. Invoices and charges are the main CTAs. Smart filters for complex data search.</p>
+      </div>
+      <div class="decision-card">
+        <span class="decision-num">02</span>
+        <p class="decision-title">Tab Bar Redesign</p>
+        <p class="decision-body">Mi Pocket and Mi Cuenta are now the tab bar's main app entry points — task-based navigation that matches user mental models directly.</p>
+      </div>
+      <div class="decision-card">
+        <span class="decision-num">03</span>
+        <p class="decision-title">Smart Auth Tiers</p>
+        <p class="decision-body">Biometric-only for transfers under $50. PIN + biometric for $50–$500. Full OTP for amounts above $500. Risk-proportional security.</p>
+      </div>
+      <div class="decision-card">
+        <span class="decision-num">04</span>
+        <p class="decision-title">App Tour</p>
+        <p class="decision-body">An app tour was created to facilitate user onboarding on the main app features — reducing first-session drop-off and improving discoverability.</p>
+      </div>
+      <div class="decision-card">
+        <span class="decision-num">05</span>
+        <p class="decision-title">Transfer Flow 7→4 Steps</p>
+        <p class="decision-body">Consolidated recipient selection + amount + fee disclosure into a single smart screen. Confirmation simplified to one tap.</p>
+      </div>
+      <div class="decision-card">
+        <span class="decision-num">06</span>
+        <p class="decision-title">UI Redesign &amp; Real Estate Optimisation</p>
+        <p class="decision-body">Introduced tiered membership UI with clear perks per level. Gamification mechanics ('earn &amp; spend') added to transaction confirmations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ITERATIONS -->
+  <section class="cs-section">
+    <div class="section-with-body">
+      <div class="section-header">
+        <p class="section-label">Iterations</p>
+        <p class="body-text">IA Redefinition / Tab Bar Redesign / UI Redesign and Real Estate Optimisation and App Tour</p>
+      </div>
+    </div>
+    <div class="img-pair img-pair-726">
+      <div><img src="/assets/images/lafise/iterations-1.png" alt="Iteration 1 — IA and Tab Bar" /></div>
+      <div><img src="/assets/images/lafise/iterations-2.png" alt="Iteration 2 — UI redesign" /></div>
+    </div>
+  </section>
+
+  <!-- SUMMARY HEADER IMAGE -->
+  <section class="cs-section" style="padding-top: 0; gap: 0;">
+    <div class="cs-img-full" style="height: 340px;">
+      <img src="/assets/images/lafise/summary-header.png" alt="Design recommendations summary" style="width:100%;height:100%;object-fit:cover;" />
+    </div>
+  </section>
+
+  <!-- SUMMARY OF ITERATIONS -->
+  <section class="cs-section">
+    <div class="section-with-body">
+      <div class="section-header">
+        <p class="section-label">Summary of Iterations and Recommendations</p>
+        <p class="body-text">After final iteration a book of best design best practices and UX principles with the optimisations, findings, and UX flows were produced in order for the design team to create the final UI KIT, design system and refined flows to dev handoff.</p>
+      </div>
+    </div>
+    <div class="img-pair" style="margin-top: 0;">
+      <div><img src="/assets/images/lafise/summary-1.png" alt="Summary document 1" /></div>
+      <div><img src="/assets/images/lafise/summary-2.png" alt="Summary document 2" /></div>
+    </div>
+    <div class="img-pair">
+      <div><img src="/assets/images/lafise/summary-3.png" alt="Summary document 3" /></div>
+      <div><img src="/assets/images/lafise/summary-4.png" alt="Summary document 4" /></div>
+    </div>
+  </section>
+
+  <!-- OUTCOMES -->
+  <section class="cs-section" style="padding-top: 0;">
+    <p class="section-label">Outcomes</p>
+    <p class="h1">Impact &amp; Results</p>
+    <div class="outcome-stats">
+      <div class="outcome-card">
+        <span class="outcome-value">+28%</span>
+        <span class="outcome-label">SUS Score Improvement (62.5 → 90.5)</span>
+      </div>
+      <div class="outcome-card">
+        <span class="outcome-value">4 Steps</span>
+        <span class="outcome-label">Streamlined Transfer Flow (from 7 steps)</span>
+      </div>
+      <div class="outcome-card">
+        <span class="outcome-value">85%</span>
+        <span class="outcome-label">Task Completion Rate (up from 52%)</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- NEXT PROJECT -->
+  <a href="/" class="next-project-link">
+    <div>
+      <p class="next-label">Next Project</p>
+      <p class="next-title">YOUR EUROPE</p>
+    </div>
+    <span class="next-arrow">View Project →</span>
+  </a>
+
+  <div class="divider"></div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Raquel Palis. All rights reserved.</span>
+    <span>Barcelona / Worldwide</span>
+  </footer>
+
+</body>
+</html>
