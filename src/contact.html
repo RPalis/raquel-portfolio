@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Raquel Palis</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    .contact-section {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0;
+    }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+    .contact-left .section-label { margin-bottom: 24px; }
+    .contact-heading {
+      font-size: clamp(40px, 6vw, 88px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 32px;
+    }
+    .contact-heading .accent { color: var(--accent); font-style: italic; }
+    .contact-sub {
+      font-size: 16px;
+      color: var(--grey-1);
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+      border-bottom: 1px solid var(--grey-3);
+      padding-bottom: 16px;
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--accent); }
+    .contact-link span { color: var(--grey-1); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; min-width: 80px; }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey-1); }
+    .form-group input,
+    .form-group textarea {
+      background: var(--bg-3);
+      border: 1px solid var(--grey-3);
+      color: var(--white);
+      font-family: var(--font);
+      font-size: 15px;
+      padding: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      border-radius: 0;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--accent); }
+    .form-group textarea { resize: vertical; min-height: 140px; }
+    @media (max-width: 768px) {
+      .contact-inner { grid-template-columns: 1fr; gap: 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">RAQUEL PALIS</a>
+    <ul class="nav-links">
+      <li><a href="about.html">ABOUT</a></li>
+      <li><a href="resume.html">RESUMÉ</a></li>
+      <li><a href="contact.html" class="active" style="color:white">CONTACT</a></li>
+    </ul>
+    <a href="https://linkedin.com" target="_blank" class="nav-linkedin" aria-label="LinkedIn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+      </svg>
+    </a>
+  </nav>
+
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-inner">
+        <div class="contact-left">
+          <div class="section-label">CONTACT</div>
+          <h1 class="contact-heading">
+            HAVE A PROJECT<br>
+            <span class="accent">IN MIND?</span>
+          </h1>
+          <p class="contact-sub">Let's work together to build something great. Drop me a message and I'll get back to you.</p>
+          <div class="contact-links">
+            <a href="mailto:your@email.com" class="contact-link">
+              <span>Email</span>
+              your@email.com
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="contact-link">
+              <span>LinkedIn</span>
+              Raquel Palis
+            </a>
+            <div class="contact-link" style="cursor:default">
+              <span>Location</span>
+              Barcelona, Spain
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" onsubmit="return false;">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Your name" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="your@email.com" />
+          </div>
+          <div class="form-group">
+            <label for="project">Project</label>
+            <input type="text" id="project" placeholder="What are you working on?" />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Tell me more..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width:fit-content; cursor:pointer; border:none;">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-logo">RAQUEL PALIS</span>
+        <ul class="footer-links">
+          <li><a href="about.html">ABOUT</a></li>
+          <li><a href="resume.html">RESUMÉ</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

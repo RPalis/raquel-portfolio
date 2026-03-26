@@ -1,0 +1,456 @@
+/* =============================================
+   RAQUEL PALIS — PORTFOLIO
+   Pentos template — exact type scale
+   ============================================= */
+
+:root {
+  /* Colors — Pentos */
+  --bg: #0d0d0d;
+  --bg-2: #111111;
+  --bg-3: #1a1a1a;
+  --accent: #c8f542;
+  --white: #ffffff;
+  --grey-1: #999999;
+  --grey-2: #444444;
+  --grey-3: #222222;
+  --font: 'Inter', sans-serif;
+  --max-width: 1440px;
+  --pad: 0 80px;
+
+  /* Type scale — exact from Pentos */
+  --display:    400px;  /* line-height: 1.0 */
+  --h1:         160px;  /* line-height: 1.1 */
+  --h2:          96px;  /* line-height: 1.1 */
+  --h3:          64px;  /* line-height: 1.1 */
+  --h4:          56px;  /* line-height: 1.1 */
+  --h4-alt:      52px;  /* line-height: 1.2 */
+  --h5:          32px;  /* line-height: 1.4 */
+  --h6:          24px;  /* line-height: 1.4 */
+  --body-lg:     24px;  /* line-height: 1.7 */
+  --body:        16px;  /* line-height: 1.9 */
+  --body-med:    16px;  /* line-height: 1.5 */
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--pad);
+}
+
+/* =============================================
+   NAV
+   ============================================= */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 80px;
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.nav-logo {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--white);
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+}
+
+.nav-links a {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--grey-1);
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--white);
+}
+
+.nav-linkedin {
+  color: var(--grey-1);
+  transition: color 0.2s;
+}
+
+.nav-linkedin:hover {
+  color: var(--accent);
+}
+
+/* =============================================
+   HERO
+   ============================================= */
+.hero {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 160px 80px 100px;
+  background-color: var(--bg);
+  overflow: hidden;
+}
+
+.hero-inner {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.hero-headline h1 {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(48px, 10.5vw, var(--h1));
+  font-weight: 900;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.hero-headline .line {
+  display: block;
+}
+
+.hero-headline .accent {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.hero-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 60px;
+  padding-top: 32px;
+  border-top: 1px solid var(--grey-3);
+}
+
+.hero-location {
+  font-size: 14px;
+  color: var(--grey-1);
+  letter-spacing: 0.02em;
+}
+
+.hero-tagline {
+  text-align: right;
+}
+
+.hero-tagline p {
+  font-size: 13px;
+  color: var(--grey-1);
+  line-height: 1.7;
+}
+
+/* =============================================
+   ABOUT BLURB
+   ============================================= */
+.about-blurb {
+  background: var(--bg-3);
+  padding: 100px 0;
+}
+
+.about-blurb-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.about-text {
+  font-size: clamp(20px, 2.5vw, 32px);
+  font-weight: 500;
+  line-height: 1.4;
+  max-width: 720px;
+  color: var(--white);
+}
+
+.btn-outline {
+  display: inline-block;
+  padding: 14px 28px;
+  border: 1px solid var(--white);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--white);
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-outline:hover {
+  background: var(--white);
+  color: var(--bg);
+}
+
+/* =============================================
+   PORTFOLIO
+   ============================================= */
+.portfolio {
+  padding: 120px 0;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.section-heading {
+  font-size: clamp(40px, 6.5vw, var(--h2));
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin-bottom: 64px;
+  line-height: 1.1;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.project-card {
+  background: var(--bg-2);
+  overflow: hidden;
+  transition: background 0.2s;
+}
+
+.project-card:hover {
+  background: var(--bg-3);
+}
+
+.project-img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--bg-3);
+  overflow: hidden;
+}
+
+.project-img.placeholder {
+  background: linear-gradient(135deg, var(--grey-3) 0%, var(--bg-2) 100%);
+}
+
+.project-info {
+  padding: 32px;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.project-tags span {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--grey-1);
+  border: 1px solid var(--grey-2);
+  padding: 4px 10px;
+  border-radius: 100px;
+  text-transform: uppercase;
+}
+
+.project-title {
+  font-size: clamp(22px, 2.5vw, 32px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  line-height: 1.1;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.project-meta {
+  font-size: 12px;
+  color: var(--grey-1);
+  letter-spacing: 0.06em;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.btn-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  transition: opacity 0.2s;
+}
+
+.btn-text:hover {
+  opacity: 0.7;
+}
+
+/* =============================================
+   CTA BANNER
+   ============================================= */
+.cta-banner {
+  background: var(--accent);
+  padding: 120px 0;
+  text-align: center;
+}
+
+.cta-banner .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.cta-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--bg);
+  text-transform: uppercase;
+}
+
+.cta-heading {
+  font-size: clamp(40px, 6vw, 88px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--bg);
+  line-height: 1;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 16px 40px;
+  background: var(--bg);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  margin-top: 8px;
+  transition: opacity 0.2s;
+}
+
+.btn-primary:hover {
+  opacity: 0.8;
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.footer {
+  padding: 40px 0;
+  border-top: 1px solid var(--grey-3);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-logo {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.footer-links {
+  display: flex;
+  gap: 32px;
+}
+
+.footer-links a {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--grey-1);
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--white);
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 768px) {
+  :root {
+    --pad: 0 24px;
+  }
+
+  .nav {
+    padding: 20px 24px;
+  }
+
+  .hero {
+    padding: 48px 24px 64px;
+  }
+
+  .hero-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .hero-tagline {
+    text-align: left;
+  }
+
+  .about-blurb-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 24px;
+    text-align: center;
+  }
+}

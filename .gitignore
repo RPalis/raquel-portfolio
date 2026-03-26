@@ -1,0 +1,27 @@
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Binary/large files
+*.pptx
+*.psd
+*.sketch
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+
+# Vercel
+.vercel
+
+# Editors
+.vscode/
+*.swp
+*.swo
